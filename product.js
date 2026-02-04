@@ -20,7 +20,6 @@ function addToCart(productId) {
   alert("Added to cart ✅");
 }
 
-
 const params = new URLSearchParams(window.location.search);
 const productId = Number(params.get("id"));
 
@@ -48,7 +47,7 @@ if (!product) {
                     <div class="col-8 d-flex align-items-center gap-2">
                         <div class="input-group" style="max-width: 150px;">
                             <button class="btn btn-outline-secondary" type="button" id="btn-minus">-</button>
-                            <input type="text" class="form-control text-center" value="1" id="$qty">
+                            <input type="text" class="form-control text-center" value="1" id="qty">
                             <button class="btn btn-outline-secondary" type="button" id="btn-plus">+</button>
                         </div>
 

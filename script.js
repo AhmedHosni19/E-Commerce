@@ -314,13 +314,13 @@ document.getElementById('addAdminForm')?.addEventListener('submit', function(e) 
 //     document.getElementById('customerDashboardEmail').textContent = user.email;
 // }
 
-function showAdminDashboard(admin) {
-    hideAll();
-    document.getElementById('adminDashboard').classList.remove('hidden');
-    document.getElementById('adminDashboardName').textContent = admin.name;
-    document.getElementById('adminDashboardEmail').textContent = admin.email;
-    displayAdminList();
-}
+// function showAdminDashboard(admin) {
+//     hideAll();
+//     document.getElementById('adminDashboard').classList.remove('hidden');
+//     document.getElementById('adminDashboardName').textContent = admin.name;
+//     document.getElementById('adminDashboardEmail').textContent = admin.email;
+//     displayAdminList();
+// }
 
 function displayAdminList() {
     const admins = JSON.parse(localStorage.getItem('admins') || '[]');
@@ -367,12 +367,12 @@ window.addEventListener('load', function() {
     const currentUser = sessionStorage.getItem('currentUser');
     const currentAdmin = sessionStorage.getItem('currentAdmin');
 
-    if (currentAdmin) {
-        showAdminDashboard(JSON.parse(currentAdmin));
-    } else if (currentUser) {
-        showCustomerDashboard(JSON.parse(currentUser));
-    } 
-    else {
-        showCustomerLogin();
-    }
+    // if (currentAdmin) {
+    //     showAdminDashboard(JSON.parse(currentAdmin));
+    // } else if (currentUser) {
+    //     showCustomerDashboard(JSON.parse(currentUser));
+    // } 
+    // else {
+    //     showCustomerLogin();
+    // }
 });

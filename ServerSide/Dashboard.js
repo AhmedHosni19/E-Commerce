@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const rejectBtn = row.querySelector(".btn-reject");
             if (rejectBtn) {
                 rejectBtn.onclick = () => {
-                    orders[index].status = " Rejected "; 
+                    orders[index].status = "Rejected";
                     localStorage.setItem("orders", JSON.stringify(orders)); 
                     renderOrders();
                 };

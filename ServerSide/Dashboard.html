@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <Body style="background-color: #dfe2e6; ">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+            <div class="container">
+                <!-- Brand Section -->
+                <a class="navbar-brand d-flex align-items-center" href="#">
+                    <img src="Images/admin.png" alt="Logo" width="50" height="50" class="me-2">
+                    <div class="lh-1">
+                        <strong>Admin Dashboard</strong><br>
+                        <small class="text-muted">E-Commerce Management</small>
+                    </div>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- CHANGED: ms-4 to me-auto to push the Search Icon to the right edge -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
+                        <li class="nav-item ms-lg-3"> <!-- Added small margin-start for desktop -->
+                            <a class="nav-link active d-flex align-items-center" href="#">
+                                <img src="Images/orders.png" alt="Logo" width="20" height="20" class="me-2">
+                                <strong>Orders</strong>
+                            </a>
+                        </li>
+                        <li class="nav-item ms-lg-3">
+                            <a class="nav-link active d-flex align-items-center" href="ProductsManagement.html">
+                                <img src="Images/products.png" alt="Logo" width="20" height="20" class="me-2">
+                                <strong>Products Management</strong>
+                            </a>
+                        </li>
+                        <li class="nav-item ms-lg-3">
+                            <a class="nav-link active d-flex align-items-center" href="#">
+                                <img src="Images/categories.png" alt="Logo" width="20" height="20" class="me-2">
+                                <strong>Categories Management</strong>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Right Edge Icon -->
+                    <a class="nav-link active d-flex align-items-center me-3" href="product-add.html" id="addProduct">
+                    <img src="Images/add.png" alt="Logo" width="40" height="40" class="me-2">
+                </a>
+                
+               <a class="btn rounded-circle no-caret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+          style="background-color: #ffcccc; border: none; padding: 10px;">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-search text-white"
+            viewBox="0 0 640 640" width="40" height="40">
+            <path
+              d="M320 312C386.3 312 440 258.3 440 192C440 125.7 386.3 72 320 72C253.7 72 200 125.7 200 192C200 258.3 253.7 312 320 312zM290.3 368C191.8 368 112 447.8 112 546.3C112 562.7 125.3 576 141.7 576L498.3 576C514.7 576 528 562.7 528 546.3C528 447.8 448.2 368 349.7 368L290.3 368z" />
+          </svg>
+        </a>
+
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item signout-button" id="logoutButton" onclick="window.open('../index.html', '_self')" href="#">Sign Out</a></li>
+        </ul>
+
+        <style>
+          .no-caret::after {
+            display: none !important;
+          }
+        </style>
+                </div>
+            </div>
+        </nav>
+
+
+
+
+        <div class="container mt-5 d-flex  justify-content-center flex-wrap gap-3">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page"><a class="text-decoration-none text-dark">
+                            <h2><strong>Orders Management</strong></h2>
+                        </a></li>
+                </ol>
+            </nav>
+        </div>
+
+
+        <div class="container d-flex align-items-center justify-content-center flex-wrap gap-3">
+            <div class="row">
+                <!-- Main content area -->
+                <main class="col-md-8">
+                    <div class="d-flex justify-content-between mb-2 fw-bold">
+
+
+                    </div>
+                    <div class="card " style="width: 45rem;">
+                        <div style="height: 375;display: none; " class="overflow-auto ">
+
+                        </div>
+                        <div class="card">
+                            <div class="card-header p-2">
+                                <div class="row g-0 text-center ">
+                                    <div class="col-2 ">ORDER ID</div>
+                                    <div class="col-2 ">CUSTOMR ID</div>
+                                    <div class="col-2 ">TOTAL PRICE</div>
+                                    <div class="col-2 ">STATUS</div>
+                                    <div class="col-2 offset-1">ACTION</div>
+                                </div>
+                            </div>
+                            <br>
+                            <div style="height: 375px ; display: none;" class="overflow-auto " id="orders-div">
+                                <div class="row g-0  ms-3">
+                                    <div class="col-2 d-flex align-items-center fw-bold "><small id="orderId"></small>
+                                    </div>
+                                    <div class="col-2 d-flex align-items-center "><small id="customerId"></small>
+                                    </div>
+                                    <div class="col-2 d-flex align-items-center "><small id="totalPrice"></small>
+                                    </div>
+                                    <div class="col-2 d-flex align-items-center  "><small id="status"></small>
+                                    </div>
+                                    <div class="col-2 d-flex align-items-center justify-content-center offset-1"
+                                        id="action">
+                                        <button type="button" class="btn btn-primary me-2">Confirm</button>
+                                        <button type="button" class="btn btn-outline-danger">Reject</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="height: 375;display: none; " class="overflow-auto " id="full-div">
+                                <div class="row g-0  ms-3">
+                                    <div class=" col-2  d-inline-flex align-items-center" id="item-img"><img src=""
+                                            height="70" width="70"></div>
+                                    <div class="col-2 "><strong id="item-title"></strong>
+                                        <p class="text-primary" id="item-subTitle"></p>
+                                    </div>
+                                    <div class="col-2  d-inline-flex align-items-center gap-2">
+                                        <div class="input-group mb-3 " style="max-width: 150px;  ">
+                                            <button class="btn btn-outline-secondary" type="button"
+                                                id="btn-minus">-</button>
+                                            <input type="text" class="form-control text-center" value="1" id="qty">
+                                            <button class="btn btn-outline-secondary" type="button"
+                                                id="btn-plus">+</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div style="height: 375px; display: none; "
+                                class="d-flex justify-content-center align-items-center text-center fw-bold fs-4 "
+                                id="empty-div">
+                                There are no Orders yet!
+                            </div>
+
+                        </div>
+
+                    </div>
+                </main>
+
+
+            </div>
+        </div>
+
+        <br><br>
+        <script src="../Cart.js" defer></script>
+        <script src="Dashboard.js"></script>
+    </Body>
+</body>
+
+</html>

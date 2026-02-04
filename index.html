@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce - Login & Registration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Customer Login Form -->
+        <div id="customerLogin" class="form-container">
+            <div class="header">
+                <h1>Customer Login</h1>
+                <p>Sign in to your account</p>
+            </div>
+            <form id="customerLoginForm">
+                <div class="form-group">
+                    <label for="customerLoginEmail">Email Address</label>
+                    <input type="email" id="customerLoginEmail" required>
+                    <div class="error-message" id="customerLoginEmailError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="customerLoginPassword">Password</label>
+                    <input type="password" id="customerLoginPassword" required>
+                    <div class="error-message" id="customerLoginPasswordError"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="button" class="btn btn-secondary" onclick="showAdminLogin()">Admin Login</button>
+            </form>
+            <div class="toggle-link">
+                Don't have an account? <a href="#" onclick="showRegister(); return false;">Register here</a>
+            </div>
+        </div>
+
+        <!-- Customer Register Form -->
+        <div id="customerRegister" class="form-container hidden">
+            <div class="header">
+                <h1>Create Account</h1>
+                <p>Join us today</p>
+            </div>
+            <form id="customerRegisterForm">
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" required>
+                    <div class="error-message" id="registerNameError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email Address</label>
+                    <input type="email" id="registerEmail" required>
+                    <div class="error-message" id="registerEmailError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" required>
+                    <div class="password-strength" id="passwordStrength"></div>
+                    <div class="error-message" id="registerPasswordError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Confirm Password</label>
+                    <input type="password" id="registerConfirmPassword" required>
+                    <div class="error-message" id="registerConfirmPasswordError"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+            <div class="toggle-link">
+                Already have an account? <a href="#" onclick="showCustomerLogin(); return false;">Login here</a>
+            </div>
+        </div>
+
+        <!-- Admin Login Form -->
+        <div id="adminLogin" class="form-container hidden">
+            <div class="header">
+                <h1>Admin Login</h1>
+                <p>Administrator access only</p>
+            </div>
+            <form id="adminLoginForm">
+                <div class="form-group">
+                    <label for="adminLoginEmail">Admin Email</label>
+                    <input type="email" id="adminLoginEmail" required>
+                    <div class="error-message" id="adminLoginEmailError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="adminLoginPassword">Password</label>
+                    <input type="password" id="adminLoginPassword" required>
+                    <div class="error-message" id="adminLoginPasswordError"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">Login as Admin</button>
+                <button type="button" class="btn btn-secondary" onclick="showCustomerLogin()">Customer Login</button>
+            </form>
+        </div>
+
+        <!-- Customer Dashboard -->
+        <div id="customerDashboard" class="dashboard hidden">
+            <div class="header">
+                <h1>Welcome Back!</h1>
+                <p>Customer Dashboard</p>
+            </div>
+            <div class="user-info">
+                <h2 id="customerDashboardName"></h2>
+                <p><strong>Email:</strong> <span id="customerDashboardEmail"></span></p>
+            </div>
+            <button class="btn btn-danger" onclick="logout()">Logout</button>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div id="adminDashboard" class="dashboard hidden">
+            <div class="header">
+                <h1>Admin Dashboard</h1>
+                <p>Manage your system</p>
+            </div>
+            <div class="user-info">
+                <h2 id="adminDashboardName"></h2>
+                <p><strong>Email:</strong> <span id="adminDashboardEmail"></span></p>
+            </div>
+
+            <div class="admin-section">
+                <h3>Add New Admin</h3>
+                <div class="success-message hidden" id="addAdminSuccess"></div>
+                <form id="addAdminForm">
+                    <div class="form-group">
+                        <label for="newAdminName">Admin Name</label>
+                        <input type="text" id="newAdminName" required>
+                        <div class="error-message" id="newAdminNameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newAdminEmail">Admin Email</label>
+                        <input type="email" id="newAdminEmail" required>
+                        <div class="error-message" id="newAdminEmailError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newAdminPassword">Password</label>
+                        <input type="password" id="newAdminPassword" required>
+                        <div class="error-message" id="newAdminPasswordError"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Admin</button>
+                </form>
+
+                <h3 style="margin-top: 30px;">All Admins</h3>
+                <div class="admin-list" id="adminList"></div>
+            </div>
+
+            <button class="btn btn-danger" onclick="logout()" style="margin-top: 30px;">Logout</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

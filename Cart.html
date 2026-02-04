@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body style="background-color: #dfe2e6;">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+        <div class="container">
+            <a class="navbar-brand " href="Home.html">
+                <img src="Images/shopping.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                ShopEase
+            </a> <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+
+
+                    <li class="nav-item d-flex align-items-center ms-3" onclick="window.location.href='WishList.html'">
+                        <img src="Images//wishlist.png" alt="Logo" width="20" height="20" class="me-2">
+                        <strong>WishList</strong>
+                    </li>
+                </ul>
+
+                <div class="input-group me-2 " style="max-width: 300px;">
+                    <button class="btn btn-outline-secondary" type="button" id="button-search">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
+                            <path
+                                d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" />
+                        </svg>
+                    </button>
+                    <input type="text" class="form-control" placeholder="Search products..." aria-label="Search">
+                </div>
+
+
+            </div>
+            <div class="mt-n1">
+                <button class="btn btn-outline-secondary " type="button" name="cart-icon">
+                    <svg class="mt-n1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="30" height="30">
+                        <path
+                            d="M24 48C10.7 48 0 58.7 0 72C0 85.3 10.7 96 24 96L69.3 96C73.2 96 76.5 98.8 77.2 102.6L129.3 388.9C135.5 423.1 165.3 448 200.1 448L456 448C469.3 448 480 437.3 480 424C480 410.7 469.3 400 456 400L200.1 400C188.5 400 178.6 391.7 176.5 380.3L171.4 352L475 352C505.8 352 532.2 330.1 537.9 299.8L568.9 133.9C572.6 114.2 557.5 96 537.4 96L124.7 96L124.3 94C119.5 67.4 96.3 48 69.2 48L24 48zM208 576C234.5 576 256 554.5 256 528C256 501.5 234.5 480 208 480C181.5 480 160 501.5 160 528C160 554.5 181.5 576 208 576zM432 576C458.5 576 480 554.5 480 528C480 501.5 458.5 480 432 480C405.5 480 384 501.5 384 528C384 554.5 405.5 576 432 576z" />
+                    </svg>
+                </button>
+                <a class="btn rounded-circle no-caret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+          style="background-color: #ffcccc; border: none; padding: 10px;">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-search text-white"
+            viewBox="0 0 640 640" width="40" height="40">
+            <path
+              d="M320 312C386.3 312 440 258.3 440 192C440 125.7 386.3 72 320 72C253.7 72 200 125.7 200 192C200 258.3 253.7 312 320 312zM290.3 368C191.8 
+              368 112 447.8 112 546.3C112 562.7 125.3 576 141.7 576L498.3 576C514.7 576 528 562.7 528 546.3C528 447.8 448.2 368 349.7 368L290.3 368z" />
+          </svg>
+        </a>
+
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item signout-button" href="#">Sign Out</a></li>
+        </ul>
+
+        <style>
+          .no-caret::after {
+            display: none !important;
+          }
+        </style>
+
+
+            </div>
+
+
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="Home.html" class="text-decoration-none text-dark">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="#"
+                        class="text-decoration-none text-dark">Shopping Cart</a></li>
+            </ol>
+        </nav>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <!-- Main content area -->
+            <main class="col-md-8">
+                <div class="d-flex justify-content-between mb-2 fw-bold">
+                    <span>
+                        <h2>Your Shipping Cart</h2>
+                    </span>
+                    <span id="clearCart" class="d-inline-flex align-items-center gap-2 text-danger"
+                        style="cursor: pointer;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="20" height="20"
+                            fill="currentColor">
+                            <path
+                                d="M232.7 69.9C237.1 56.8 249.3 48 263.1 48L377 48C390.8 48 403 56.8 407.4 69.9L416 96L512 96C529.7 96 544 110.3 544 128C544 145.7 529.7 160 512 160L128 160C110.3 160 96 145.7 96 128C96 110.3 110.3 96 128 96L224 96L232.7 69.9zM128 208L512 208L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 208zM216 272C202.7 272 192 282.7 192 296L192 488C192 501.3 202.7 512 216 512C229.3 512 240 501.3 240 488L240 296C240 282.7 229.3 272 216 272zM320 272C306.7 272 296 282.7 296 296L296 488C296 501.3 306.7 512 320 512C333.3 512 344 501.3 344 488L344 296C344 282.7 333.3 272 320 272zM424 272C410.7 272 400 282.7 400 296L400 488C400 501.3 410.7 512 424 512C437.3 512 448 501.3 448 488L448 296C448 282.7 437.3 272 424 272z" />
+                        </svg>
+                        Clear cart
+
+                    </span>
+
+                </div>
+                <div class="card " style="width: 45rem;">
+
+                    <div class="card">
+                        <div class="card-header p-2">
+                            <div class="row g-0 text-center ">
+                                <div class="col-2 ">PRODUCT</div>
+                                <div class="col-2 offset-2">QUANTATITY</div>
+                                <div class="col-2 offset-1">PRICE</div>
+                                <div class="col-2 ">SUBTOTAL</div>
+                            </div>
+                        </div>
+                        <br>
+
+                        <div style="height: 375px;display: none; " class="overflow-auto " id="full-div">
+                            <div class="row g-0  ms-3">
+                                <div class=" col-2  d-inline-flex align-items-center" id="item-img"><img src=""
+                                        height="70" width="70"></div>
+                                <div class="col-2 "><strong id="item-title"></strong>
+                                    <p class="text-primary" id="item-subTitle"></p>
+                                </div>
+                                <div class="col-2  d-inline-flex align-items-center gap-2">
+                                    <div class="input-group mb-3 " style="max-width: 150px;  ">
+                                        <button class="btn btn-outline-secondary" type="button"
+                                            id="btn-minus">-</button>
+                                        <input type="text" class="form-control text-center" value="1" id="qty">
+                                        <button class="btn btn-outline-secondary" type="button" id="btn-plus">+</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-2 fw-bold d-inline-flex align-items-center gap-2 offset-1"
+                                    id="item-price"></div>
+                                <div class="col-2 text-primary fw-bold d-inline-flex align-items-center gap-2"
+                                    id="subTotalPrice"></div>
+                                <div id="deleteProduct" class="col-1 d-inline-flex align-items-center gap-2 text-danger"
+                                    style="cursor: pointer;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="20" height="20"
+                                        fill="currentColor">
+                                        <path
+                                            d="M232.7 69.9C237.1 56.8 249.3 48 263.1 48L377 48C390.8 48 403 56.8 407.4 69.9L416 96L512 96C529.7 96 544 110.3 544 128C544 145.7 529.7 160 512 160L128 160C110.3 160 96 145.7 96 128C96 110.3 110.3 96 128 96L224 96L232.7 69.9zM128 208L512 208L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 208zM216 272C202.7 272 192 282.7 192 296L192 488C192 501.3 202.7 512 216 512C229.3 512 240 501.3 240 488L240 296C240 282.7 229.3 272 216 272zM320 272C306.7 272 296 282.7 296 296L296 488C296 501.3 306.7 512 320 512C333.3 512 344 501.3 344 488L344 296C344 282.7 333.3 272 320 272zM424 272C410.7 272 400 282.7 400 296L400 488C400 501.3 410.7 512 424 512C437.3 512 448 501.3 448 488L448 296C448 282.7 437.3 272 424 272z" />
+                                    </svg>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div style="height: 375px; display: none;"
+                            class="d-flex justify-content-center align-items-center text-center fw-bold fs-4 "
+                            id="empty-div">
+                            The Cart is Empty
+                        </div>
+
+                    </div>
+
+                </div>
+            </main>
+
+            <!-- Aside/Sidebar area -->
+            <aside class="sidebar-content" style="max-width: 300px;">
+                <div class="card " style="width: 24rem;">
+
+                    <div class="card-header">
+                        <div class=" fw-bold">
+                            Order Summary
+                        </div><br>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-primary ">SubTotal</span>
+                            <span id="subTotal" class="fw-bold">$0.00</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-primary ">Estimated Shipping</span>
+                            <span id="EstimatedShipping" class="fw-bold">$0.00</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-primary ">Estimated Tax</span>
+                            <span id="EstimatedTax" class="fw-bold">$0.00</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-2 fw-bold">
+                            <span>Total</span>
+                            <span id="EstimatedTax" class="fw-bold text-primary">$0.00</span>
+                        </div>
+
+                        <a href="#" class="btn btn-primary w-100 p-2 mt-3" id="submit-order">
+                            Submit Order
+                        </a><br><br>
+                        <span class="text-primary">Discount Code</span>
+
+                        <form class="d-flex" role="apply-discount">
+                            <input class="form-control me-2" type="text" id="discount-code" placeholder="Code"
+                                aria-label="discount" />
+                            <button class="btn btn-outline-success" type="submit">Apply</button>
+                        </form>
+
+                        <span class="d-flex justify-content-center align-items-center py-3 text-primary-emphasis gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="20"
+                                hight="20"><!--!Font Awesome Pro v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2026 Fonticons, Inc.-->
+                                <path
+                                    d="M256 160L256 224L384 224L384 160C384 124.7 355.3 96 320 96C284.7 96 256 124.7 256 160zM192 224L192 160C192 89.3 249.3 32 320 32C390.7 32 448 89.3 448 160L448 224C483.3 224 512 252.7 512 288L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 288C128 252.7 156.7 224 192 224z" />
+                            </svg>
+                            Secure Payment</span>
+                        <span class="d-flex justify-content-center align-items-center py-3 text-primary-emphasis">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="25"
+                                hight="25"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+                                <path
+                                    d="M64 192L64 224L576 224L576 192C576 156.7 547.3 128 512 128L128 128C92.7 128 64 156.7 64 192zM64 272L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 272L64 272zM128 424C128 410.7 138.7 400 152 400L200 400C213.3 400 224 410.7 224 424C224 437.3 213.3 448 200 448L152 448C138.7 448 128 437.3 128 424zM272 424C272 410.7 282.7 400 296 400L360 400C373.3 400 384 410.7 384 424C384 437.3 373.3 448 360 448L296 448C282.7 448 272 437.3 272 424z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="25"
+                                hight="25"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+                                <path
+                                    d="M239.9 359.9C236.4 379.1 222.5 468.6 218.4 493.9C218.1 495.7 217.4 496.4 215.4 496.4L140.8 496.4C133.2 496.4 127.7 489.8 128.7 482.5L187.3 110.6C188.8 101 197.4 93.7 207.3 93.7C359.6 93.7 372.4 90 411.3 105.1C471.4 128.4 476.9 184.6 455.3 245.4C433.8 308 382.8 334.9 315.2 335.7C271.8 336.4 245.7 328.7 239.9 359.9zM485.6 216C483.8 214.7 483.1 214.2 482.6 217.3C480.6 228.7 477.5 239.8 473.8 250.9C433.9 364.7 323.3 354.8 269.3 354.8C263.2 354.8 259.2 358.1 258.4 364.2C235.8 504.6 231.3 533.9 231.3 533.9C230.3 541 234.8 546.8 241.9 546.8L305.4 546.8C314 546.8 321.1 540.5 322.8 531.9C323.5 526.5 321.7 538 337.2 440.6C341.8 418.6 351.5 420.9 366.5 420.9C437.5 420.9 492.9 392.1 509.4 308.6C515.9 273.8 514 237.2 485.6 216z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="25"
+                                hight="25"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+                                <path
+                                    d="M128 96C92.7 96 64 124.7 64 160L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 256C576 220.7 547.3 192 512 192L136 192C122.7 192 112 181.3 112 168C112 154.7 122.7 144 136 144L520 144C533.3 144 544 133.3 544 120C544 106.7 533.3 96 520 96L128 96zM480 320C497.7 320 512 334.3 512 352C512 369.7 497.7 384 480 384C462.3 384 448 369.7 448 352C448 334.3 462.3 320 480 320z" />
+                            </svg>
+                        </span>
+
+
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <br><br>
+    <script src="Cart.js"></script>
+<script src="script.js"></script>
+</body>
+</Html:5>

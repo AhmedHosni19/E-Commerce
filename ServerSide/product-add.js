@@ -1,5 +1,5 @@
 // ===========================
-// Add / Edit Product JS
+// Add / Edit Product
 // ===========================
 
 // Grab all form elements

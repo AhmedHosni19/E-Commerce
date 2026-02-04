@@ -1,7 +1,7 @@
 const SHIPPING_RATE = 10;
   const TAX_RATE = 0.08;
   let discount = 0;
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 function calculateTotal() {
     let subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
@@ -116,20 +116,19 @@ function saveProducts(products) {
     calculateTotals();
   }
 
-//  Add Product
 
-  function addToCart(product) {
-    const existing = cart.find(item => item.id === product.id);
+  // function addToCart(product) {
+  //   const existing = cart.find(item => item.id === product.id);
 
-    if (existing) {
-      existing.qty++;
-    } else {
-      cart.push({ ...product, qty: 1 });
-    }
+  //   if (existing) {
+  //     existing.qty++;
+  //   } else {
+  //     cart.push({ ...product, qty: 1 });
+  //   }
 
-    saveCart();
-    renderCart();
-  }
+  //   saveCart();
+  //   renderCart();
+  // }
 
  
 
@@ -159,16 +158,16 @@ function saveProducts(products) {
   renderCart();
 });
 
-let dashboardCart = JSON.parse(localStorage.getItem("dashboard")) || [];
-function saveDashboardCart() {
-  localStorage.setItem("dashboard", JSON.stringify(dashboardCart));
-}
+// let dashboardCart = JSON.parse(localStorage.getItem("dashboard")) || [];
+// function saveDashboardCart() {
+//   localStorage.setItem("dashboard", JSON.stringify(dashboardCart));
+// }
 
-function addToDashboardCart(products) {
- dashboardCart.push(products );
-  saveDashboardCart();
-  alert(`${product.title} added to dashboard cart 🛒`);
-}
+// function addToDashboardCart(products) {
+//  dashboardCart.push(products );
+//   saveDashboardCart();
+//   alert(`${product.title} added to dashboard cart 🛒`);
+// }
 
 
 

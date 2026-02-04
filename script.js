@@ -138,15 +138,15 @@ document.getElementById('customerLoginForm')?.addEventListener('submit', functio
 
     let hasError = false;
 
-    if (!validateEmail(email)) {
-        showError('customerLoginEmail', 'Please enter a valid email address');
-        hasError = true;
-    }
+    // if (!validateEmail(email)) {
+    //     showError('customerLoginEmail', 'Please enter a valid email address');
+    //     hasError = true;
+    // }
 
-    if (!validatePassword(password)) {
-        showError('customerLoginPassword', 'Password must be at least 6 characters');
-        hasError = true;
-    }
+    // if (!validatePassword(password)) {
+    //     showError('customerLoginPassword', 'Password must be at least 6 characters');
+    //     hasError = true;
+    // }
 
     if (hasError) return;
 
@@ -226,15 +226,15 @@ document.getElementById('adminLoginForm')?.addEventListener('submit', function(e
 
     let hasError = false;
 
-    if (!validateEmail(email)) {
-        showError('adminLoginEmail', 'Please enter a valid email address');
-        hasError = true;
-    }
+    // if (!validateEmail(email)) {
+    //     showError('adminLoginEmail', 'Please enter a valid email address');
+    //     hasError = true;
+    // }
 
-    if (!validatePassword(password)) {
-        showError('adminLoginPassword', 'Password must be at least 6 characters');
-        hasError = true;
-    }
+    // if (!validatePassword(password)) {
+    //     showError('adminLoginPassword', 'Password must be at least 6 characters');
+    //     hasError = true;
+    // }
 
     if (hasError) return;
 
@@ -253,55 +253,55 @@ document.getElementById('adminLoginForm')?.addEventListener('submit', function(e
 // Add New Admin
 // ==========================================
 
-document.getElementById('addAdminForm')?.addEventListener('submit', function(e) {
-    e.preventDefault();
-    clearErrors();
+// document.getElementById('addAdminForm')?.addEventListener('submit', function(e) {
+//     e.preventDefault();
+//     clearErrors();
 
-    const name = document.getElementById('newAdminName').value.trim();
-    const email = document.getElementById('newAdminEmail').value.trim();
-    const password = document.getElementById('newAdminPassword').value;
+//     const name = document.getElementById('newAdminName').value.trim();
+//     const email = document.getElementById('newAdminEmail').value.trim();
+//     const password = document.getElementById('newAdminPassword').value;
 
-    let hasError = false;
+//     let hasError = false;
 
-    if (!validateName(name)) {
-        showError('newAdminName', 'Name must be at least 2 characters long');
-        hasError = true;
-    }
+//     if (!validateName(name)) {
+//         showError('newAdminName', 'Name must be at least 2 characters long');
+//         hasError = true;
+//     }
 
-    if (!validateEmail(email)) {
-        showError('newAdminEmail', 'Please enter a valid email address');
-        hasError = true;
-    }
+//     if (!validateEmail(email)) {
+//         showError('newAdminEmail', 'Please enter a valid email address');
+//         hasError = true;
+//     }
 
-    if (!validatePassword(password)) {
-        showError('newAdminPassword', 'Password must be at least 6 characters long');
-        hasError = true;
-    }
+//     if (!validatePassword(password)) {
+//         showError('newAdminPassword', 'Password must be at least 6 characters long');
+//         hasError = true;
+//     }
 
-    if (hasError) return;
+//     if (hasError) return;
 
-    const admins = JSON.parse(localStorage.getItem('admins') || '[]');
+//     const admins = JSON.parse(localStorage.getItem('admins') || '[]');
 
-    if (admins.some(a => a.email === email)) {
-        showError('newAdminEmail', 'An admin with this email already exists');
-        return;
-    }
+//     if (admins.some(a => a.email === email)) {
+//         showError('newAdminEmail', 'An admin with this email already exists');
+//         return;
+//     }
 
-    const newAdmin = { name, email, password };
-    admins.push(newAdmin);
-    localStorage.setItem('admins', JSON.stringify(admins));
+//     const newAdmin = { name, email, password };
+//     admins.push(newAdmin);
+//     localStorage.setItem('admins', JSON.stringify(admins));
 
-    const successEl = document.getElementById('addAdminSuccess');
-    successEl.textContent = `✅ Admin "${name}" added successfully!`;
-    successEl.classList.remove('hidden');
+//     const successEl = document.getElementById('addAdminSuccess');
+//     successEl.textContent = `✅ Admin "${name}" added successfully!`;
+//     successEl.classList.remove('hidden');
 
-    document.getElementById('addAdminForm').reset();
-    displayAdminList();
+//     document.getElementById('addAdminForm').reset();
+//     displayAdminList();
 
-    setTimeout(() => {
-        successEl.classList.add('hidden');
-    }, 3000);
-});
+//     setTimeout(() => {
+//         successEl.classList.add('hidden');
+//     }, 3000);
+// });
 
 // ==========================================
 // Dashboard Functions
@@ -322,24 +322,24 @@ document.getElementById('addAdminForm')?.addEventListener('submit', function(e) 
 //     displayAdminList();
 // }
 
-function displayAdminList() {
-    const admins = JSON.parse(localStorage.getItem('admins') || '[]');
-    const listEl = document.getElementById('adminList');
+// function displayAdminList() {
+//     const admins = JSON.parse(localStorage.getItem('admins') || '[]');
+//     const listEl = document.getElementById('adminList');
     
-    if (admins.length === 0) {
-        listEl.innerHTML = '<p style="text-align: center; color: #666;">No admins found</p>';
-        return;
-    }
+//     if (admins.length === 0) {
+//         listEl.innerHTML = '<p style="text-align: center; color: #666;">No admins found</p>';
+//         return;
+//     }
 
-    listEl.innerHTML = admins.map(admin => `
-        <div class="admin-item">
-            <div>
-                <strong>${admin.name}</strong><br>
-                <small>${admin.email}</small>
-            </div>
-        </div>
-    `).join('');
-}
+//     listEl.innerHTML = admins.map(admin => `
+//         <div class="admin-item">
+//             <div>
+//                 <strong>${admin.name}</strong><br>
+//                 <small>${admin.email}</small>
+//             </div>
+//         </div>
+//     `).join('');
+// }
 
 // ==========================================
 // Logout
@@ -361,11 +361,11 @@ function logout() {
 // Session Management on Load
 // ==========================================
 
-window.addEventListener('load', function() {
-    initializeApp();
+// window.addEventListener('load', function() {
+//     initializeApp();
     
-    const currentUser = sessionStorage.getItem('currentUser');
-    const currentAdmin = sessionStorage.getItem('currentAdmin');
+//     const currentUser = sessionStorage.getItem('currentUser');
+//     const currentAdmin = sessionStorage.getItem('currentAdmin');
 
     // if (currentAdmin) {
     //     showAdminDashboard(JSON.parse(currentAdmin));
@@ -375,4 +375,4 @@ window.addEventListener('load', function() {
     // else {
     //     showCustomerLogin();
     // }
-});
+// });

@@ -369,25 +369,10 @@ window.addEventListener('load', function() {
 
     if (currentAdmin) {
         showAdminDashboard(JSON.parse(currentAdmin));
-    // } else if (currentUser) {
-    //     showCustomerDashboard(JSON.parse(currentUser));
-    // } 
-    // else {
-    //     showCustomerLogin();
+    } else if (currentUser) {
+        showCustomerDashboard(JSON.parse(currentUser));
+    } 
+    else {
+        showCustomerLogin();
     }
 });
-
-// ==========================================
-// Console Info
-// ==========================================
-
-console.log('%c🛒 E-Commerce System Loaded', 'color: #667eea; font-size: 16px; font-weight: bold;');
-console.log('%cDefault Admin Credentials:', 'color: #764ba2; font-weight: bold;');
-console.log('Email: admin@example.com');
-console.log('Password: admin123');
-
-
-
-// ==========================================
-// Generate User ID from Email
-// ==========================================

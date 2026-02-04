@@ -1,2 +1,2 @@
-# E-Commerce
-Simple E-Commerce website using HTML &amp; CSS &amp; Bootsrtap &amp; JavaScript
+# EcommerceSystem.ITI
+JavaScript E-Commerce Project

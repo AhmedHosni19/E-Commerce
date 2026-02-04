@@ -210,7 +210,7 @@ document.getElementById('customerRegisterForm')?.addEventListener('submit', func
     localStorage.setItem('users', JSON.stringify(users));
 
     sessionStorage.setItem('currentUser', JSON.stringify(newUser));
-    // showCustomerDashboard(newUser);
+    window.location.href = 'Home.html';
 });
 
 // ==========================================

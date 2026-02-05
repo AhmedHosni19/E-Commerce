@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Commerce - Login & Registration</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="container">
         <!-- Customer Login Form -->
@@ -113,6 +115,7 @@
                 <h2 id="adminDashboardName"></h2>
                 <p><strong>Email:</strong> <span id="adminDashboardEmail"></span></p>
             </div>
+                <button class="btn btn-primary" onclick="window.location.href = 'ServerSide/ProductsManagement.html'">Login</button>
 
             <div class="admin-section">
                 <h3>Add New Admin</h3>
@@ -135,8 +138,8 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Add Admin</button>
                 </form>
-
                 <h3 style="margin-top: 30px;">All Admins</h3>
+
                 <div class="admin-list" id="adminList"></div>
             </div>
 
@@ -146,4 +149,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

@@ -1,8 +1,9 @@
 const container = document.getElementById("products");
 
 // load products (from localStorage if exists)
-let productsData = JSON.parse(localStorage.getItem("products")) || products;
+let productsDataRaw = JSON.parse(localStorage.getItem("products")) || products;
 
+let productsData = Object.values(productsDataRaw).flat();
 // save products
 function saveProducts() {
   localStorage.setItem("products", JSON.stringify(productsData));
@@ -10,6 +11,11 @@ function saveProducts() {
 
 // remove product
 function removeProduct(id) {
+   const currentUser = JSON.parse(sessionStorage.getItem('currentAdmin'));
+    if (!currentUser) {
+        alert("Please log in first!");
+        return;
+    }
   if (!confirm("Are you sure you want to delete this product?")) return;
 
   productsData = productsData.filter(p => p.id !== id);
@@ -53,3 +59,5 @@ function renderProducts(list) {
 
 // init
 renderProducts(productsData);
+
+

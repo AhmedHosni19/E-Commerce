@@ -26,16 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const TAX_RATE = 0.08;
   let discount = 0;
 
-function loadProducts() {
-  const stored = localStorage.getItem("products");
-  return stored ? JSON.parse(stored) : [...products];
-}
-
-function saveProducts(products) {
-  localStorage.setItem("products", JSON.stringify(products));
-}
-
-
 
 // Cart
 
@@ -117,18 +107,6 @@ function saveProducts(products) {
   }
 
 
-  // function addToCart(product) {
-  //   const existing = cart.find(item => item.id === product.id);
-
-  //   if (existing) {
-  //     existing.qty++;
-  //   } else {
-  //     cart.push({ ...product, qty: 1 });
-  //   }
-
-  //   saveCart();
-  //   renderCart();
-  // }
 
  
 
@@ -158,17 +136,17 @@ function saveProducts(products) {
   renderCart();
 });
 
-// let dashboardCart = JSON.parse(localStorage.getItem("dashboard")) || [];
-// function saveDashboardCart() {
-//   localStorage.setItem("dashboard", JSON.stringify(dashboardCart));
-// }
+let dashboardCart = JSON.parse(localStorage.getItem("dashboard")) || [];
+function saveDashboardCart() {
+  localStorage.setItem("dashboard", JSON.stringify(dashboardCart));
+}
 
-// function addToDashboardCart(products) {
-//  dashboardCart.push(products );
-//   saveDashboardCart();
-//   alert(`${product.title} added to dashboard cart 🛒`);
-// }
-
+function addToDashboardCart(products) {
+ dashboardCart.push(products );
+  saveDashboardCart();
+  alert(`${products.title} added to dashboard cart 🛒`);
+}
+  
 
 
 function orderSummery() {
@@ -178,7 +156,7 @@ function orderSummery() {
     // Make sure currentUser exists
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     if (!currentUser) {
-        console.error("No user logged in!");
+        alert("Please log in first!");
         return;
     }
 

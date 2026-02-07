@@ -15,47 +15,48 @@
 <body>
 
     <Body style="background-color: #dfe2e6; ">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
-            <div class="container">
-                <!-- Brand Section -->
-                <a class="navbar-brand d-flex align-items-center" href="#">
-                    <img src="Images/admin.png" alt="Logo" width="50" height="50" class="me-2">
-                    <div class="lh-1">
-                        <strong>Admin Dashboard</strong><br>
-                        <small class="text-muted">E-Commerce Management</small>
-                    </div>
-                </a>
+         <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+        <div class="container">
+            <!-- Brand Section -->
+            <a class="navbar-brand d-flex align-items-center" href="ProductsManagement.html">
+                <img src="Images/admin.png" alt="Logo" width="50" height="50" class="me-2">
+                <div class="lh-1">
+                    <strong>Admin Dashboard</strong><br>
+                    <small class="text-muted">E-Commerce Management</small>
+                </div>
+            </a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- CHANGED: ms-4 to me-auto to push the Search Icon to the right edge -->
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
-                        <li class="nav-item ms-lg-3"> <!-- Added small margin-start for desktop -->
-                            <a class="nav-link active d-flex align-items-center" href="#">
-                                <img src="Images/orders.png" alt="Logo" width="20" height="20" class="me-2">
-                                <strong>Orders</strong>
-                            </a>
-                        </li>
-                        <li class="nav-item ms-lg-3">
-                            <a class="nav-link active d-flex align-items-center" href="ProductsManagement.html">
-                                <img src="Images/products.png" alt="Logo" width="20" height="20" class="me-2">
-                                <strong>Products Management</strong>
-                            </a>
-                        </li>
-                        <li class="nav-item ms-lg-3">
-                            <a class="nav-link active d-flex align-items-center" href="#">
-                                <img src="Images/categories.png" alt="Logo" width="20" height="20" class="me-2">
-                                <strong>Categories Management</strong>
-                            </a>
-                        </li>
-                    </ul>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                    <!-- Right Edge Icon -->
-                    <a class="nav-link active d-flex align-items-center me-3" href="product-add.html" id="addProduct">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
+                    <li class="nav-item ms-lg-3">
+                        <a class="nav-link active d-flex align-items-center" href="Dashboard.html">
+                            <img src="Images/orders.png" alt="Logo" width="20" height="20" class="me-2">
+                            <strong>Orders</strong>
+                        </a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="nav-link active d-flex align-items-center" href="ProductsManagement.html">
+                            <img src="Images/products.png" alt="Logo" width="20" height="20" class="me-2">
+                            <strong>Products Management</strong>
+                        </a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="nav-link active d-flex align-items-center" href="CategoriesManagment.html">
+                            <img src="Images/categories.png" alt="Logo" width="20" height="20" class="me-2">
+                            <strong>Categories Management</strong>
+                        </a>
+                    </li>
+                    
+                </ul>
+                
+  </a>
+                <a class="nav-link active d-flex align-items-center me-3" href="product-add.html" id="addProduct">
                     <img src="Images/add.png" alt="Logo" width="40" height="40" class="me-2">
                 </a>
                 
@@ -69,7 +70,7 @@
         </a>
 
         <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item signout-button" id="logoutButton" onclick="window.open('../index.html', '_self')" href="#"><button class="btn btn-danger">Sign Out</button></a></li>
+  <button id="logoutButton" class="dropdown-item btn btn-danger">Sign Out</button>
         </ul>
 
         <style>
@@ -77,9 +78,10 @@
             display: none !important;
           }
         </style>
-                </div>
+
             </div>
-        </nav>
+        </div>
+    </nav>
 
 
 
@@ -157,6 +159,8 @@
         <br><br>
         <script src="../Cart.js" defer></script>
         <script src="Dashboard.js"></script>
+        <script src="../script.js"></script>
+<script src="logout.js"></script>
     </Body>
 </body>
 

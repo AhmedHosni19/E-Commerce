@@ -63,6 +63,8 @@ function hideAll() {
 }
 
 function showCustomerLogin() {
+    localStorage.clear();
+location.reload();
     hideAll();
     clearErrors();
     document.getElementById('customerLogin').classList.remove('hidden');
@@ -359,7 +361,7 @@ function logout() {
     location.replace('index.html');
 
 }
-
+initializeApp()
 // ==========================================
 // Session Management on Load
 // ==========================================

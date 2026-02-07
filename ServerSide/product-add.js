@@ -1,8 +1,3 @@
-// ===========================
-// Add / Edit Product
-// ===========================
-
-// Grab all form elements
 const imageInput = document.getElementById("formFileLg");
 const titleInput = document.getElementById("title");
 const subTitleInput = document.getElementById("subTitle");
@@ -11,10 +6,14 @@ const priceInput = document.getElementById("price");
 const descriptionInput = document.getElementById("description");
 const submitBtn = document.getElementById("submitBtn");
 
+let productsDataRaw = JSON.parse(localStorage.getItem("products")) || products;
+
+let productsData = Object.values(productsDataRaw).flat();
+
 // Load products from localStorage
 function loadProducts() {
   const stored = localStorage.getItem("products");
-  return stored ? JSON.parse(stored) : [...defaultProducts];
+  return stored ? JSON.parse(stored) : [...productsData];
 }
 
 // Save products to localStorage
@@ -23,7 +22,7 @@ function saveProducts(products) {
 }
 
 // Load existing products
-let products = loadProducts();
+productsData = loadProducts();
 
 // Check if we are editing
 const params = new URLSearchParams(window.location.search);
@@ -31,7 +30,7 @@ const editingId = Number(params.get("id"));
 let editingProduct = null;
 
 if (editingId) {
-  editingProduct = products.find(p => p.id === editingId);
+  editingProduct = productsData.find(p => p.id === editingId);
 
   if (editingProduct) {
     // Populate form
@@ -73,9 +72,17 @@ submitBtn.addEventListener("click", e => {
       editingProduct.category = categoryInput.value.trim();
       editingProduct.price = parseFloat(priceInput.value);
       editingProduct.description = descriptionInput.value.trim();
-      if (imageData) editingProduct.image = imageData;
 
-      saveProducts(products);
+      // Only update image if a new one was uploaded
+      if (imageData !== null) { 
+    editingProduct.image = imageData;
+  } else if (!editingProduct.image) {
+    alert("No image found for this product!");
+    return;
+  }
+
+
+      saveProducts(productsData);
       alert(`${editingProduct.title} updated successfully!`);
     } else {
       // Create new product
@@ -88,12 +95,11 @@ submitBtn.addEventListener("click", e => {
         description: descriptionInput.value.trim(),
         image: imageData
       };
-      products.push(newProduct);
-      saveProducts(products);
+      productsData.push(newProduct); 
+      saveProducts(productsData);
       alert(`${newProduct.title} added successfully!`);
     }
 
-    // Redirect back to management page
     window.open("ProductsManagement.html", "_self");
   };
 
@@ -106,3 +112,4 @@ submitBtn.addEventListener("click", e => {
     processProduct(null);
   }
 });
+

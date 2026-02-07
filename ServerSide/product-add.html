@@ -14,10 +14,9 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary  sticky-top">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
         <div class="container">
-            <!-- Brand Section -->
-            <a class="navbar-brand d-flex align-items-center" href="#">
+            <a class="navbar-brand d-flex align-items-center" href="ProductsManagement.html">
                 <img src="Images/admin.png" alt="Logo" width="50" height="50" class="me-2">
                 <div class="lh-1">
                     <strong>Admin Dashboard</strong><br>
@@ -46,20 +45,20 @@
                         </a>
                     </li>
                     <li class="nav-item ms-lg-3">
-                        <a class="nav-link active d-flex align-items-center" href="#">
-                            <img src="Images/categories.png" alt="Logo" width="20" height="20" class="me-2 ">
+                        <a class="nav-link active d-flex align-items-center" href="CategoriesManagment.html">
+                            <img src="Images/categories.png" alt="Logo" width="20" height="20" class="me-2">
                             <strong>Categories Management</strong>
                         </a>
                     </li>
-
+                    
                 </ul>
-
-                </a>
+                
+  </a>
                 <a class="nav-link active d-flex align-items-center me-3" href="product-add.html" id="addProduct">
                     <img src="Images/add.png" alt="Logo" width="40" height="40" class="me-2">
                 </a>
-
-                <a class="btn rounded-circle no-caret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                
+               <a class="btn rounded-circle no-caret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
           style="background-color: #ffcccc; border: none; padding: 10px;">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-search text-white"
             viewBox="0 0 640 640" width="40" height="40">
@@ -69,8 +68,7 @@
         </a>
 
         <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item signout-button" id="logoutButton" 
-            onclick="window.open('../index.html', '_self')" href="#"><button class="btn btn-danger">Sign Out</button></a></li>
+  <button id="logoutButton" class="dropdown-item btn btn-danger">Sign Out</button>
         </ul>
 
         <style>
@@ -78,6 +76,7 @@
             display: none !important;
           }
         </style>
+
             </div>
         </div>
     </nav>
@@ -101,10 +100,12 @@
             aria-describedby="inputGroup-sizing-lg">
     </div> <br>
     <div class="input-group input-group-lg">
+        
         <span class="input-group-text">Product Category</span>
         <input type="text"  id="category" class="form-control" aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-lg">
-    </div> <br>
+    </div> 
+    <br>
     <div class="input-group input-group-lg">
         <span class="input-group-text" >Product Price</span>
         <input type="number" id="price" class="form-control" aria-label="Sizing example input"
@@ -120,9 +121,11 @@
     </div>
    
     
-<script src="product-add.js"defer></script>
-
-
+<script src="data/products-data.js"></script>
+<script src="product-add.js"></script>
+<script src="ProductsManagment.js"></script>
+<script src="../script.js"></script>
+<script src="logout.js"></script>
 </body>
 
 </html>

@@ -35,14 +35,24 @@
 
               <strong>Categories</strong>
             </a>
-            <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
-              <li><a class="dropdown-item" href="#" data-category="All">All</a></li>
-              <li><a class="dropdown-item" href="#" data-category="Audio">Audio</a></li>
-              <li><a class="dropdown-item" href="#" data-category="Computers">Computers</a></li>
-              <li><a class="dropdown-item" href="#" data-category="Smart Home">Smart Home</a></li>
-              <li><a class="dropdown-item" href="#" data-category="Gaming">Gaming</a></li>
-              <li><a class="dropdown-item" href="#" data-category="Home">Home</a></li>
-            </ul>
+              <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                <li><a class="dropdown-item" href="#" data-category="All">All Products</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#" data-category="Audio">🎵 Audio</a></li>
+                <li><a class="dropdown-item" href="#" data-category="Computers">💻 Computers</a></li>
+                <li><a class="dropdown-item" href="#" data-category="Smart Home">🏠 Smart Home</a></li>
+                <li><a class="dropdown-item" href="#" data-category="Gaming">🎮 Gaming</a></li>
+                <li><a class="dropdown-item" href="#" data-category="Tennis">🎮 Tennis</a></li>
+
+                <li><a class="dropdown-item" href="#" data-category="Home">🏠 Home</a></li>
+                <li><a class="dropdown-item" href="#" data-category="Sports">⚽ Sports</a></li>
+                <li><a class="dropdown-item" href="#" data-category="Other">⚽ Other</a></li>
+
+
+              
+              </ul>
           </li>
 
 
@@ -89,7 +99,7 @@
         </a>
 
         <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item signout-button" href="#"><button class="btn btn-danger">Sign Out</button></a></li>
+  <button id="logoutButton" class="dropdown-item btn btn-danger">Sign Out</button>
         </ul>
 
         <style>
@@ -106,6 +116,7 @@
   <script src="Home.js"></script>
   <script src="./ServerSide/ProductsManagment.js"></script>
   <script src="script.js"></script>
+  <script src="/ServerSide/logout.js"></script>
 </body>
 
 </html>

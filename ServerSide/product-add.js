@@ -55,7 +55,11 @@ if (editingId) {
 // Handle submit
 submitBtn.addEventListener("click", e => {
   e.preventDefault();
-
+const currentAdmin = JSON.parse(sessionStorage.getItem('currentAdmin'));
+    if (!currentAdmin) {
+        alert("Please log in first!");
+        return;
+    }
   // Basic validation
   if (!editingProduct && !imageInput.files.length) return alert("Please upload a product image!");
   if (!titleInput.value.trim()) return alert("Please enter product title!");

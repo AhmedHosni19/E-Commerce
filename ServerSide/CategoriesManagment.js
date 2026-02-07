@@ -5,6 +5,7 @@
 // ===============================
 const STORAGE_KEY = "categories_db";
 
+
 // DOM
 const sidebarContainer = document.getElementById("dynamic-sidebar");
 const newCategoryInput = document.getElementById("newCategoryInput");
@@ -53,10 +54,9 @@ function renderCategories() {
     item.className = "list-group-item ";
     item.innerHTML =  
      
-    "<div class='row'> <div class='edit-icon col-7'>" + category + 
-     "</div>"+ 
+    "<div class='row'> <div class='edit-icon col-7'>" +category+"</div>"+ 
      "<div class='col-5 '><span class='edit-icon'><a href='#'class='m-1' style='text-decoration:none'>✏️</a></span> "+
-      "<span class='delete-icon'><a href='#' style='text-decoration:none '>🗑️</a></span> </div> </div>";
+      "<span class='delete-icon'><a href='#' style='text-decoration:none'class='btn-danger' data-category='${category}'>🗑️</a></span> </div> </div>";
 
     sidebarContainer.appendChild(item);
   });
@@ -82,6 +82,7 @@ function addCategory() {
 
   // 1️⃣ Add to localStorage categories
   categories.push(categoryName);
+  alert(categoryName + " Category Added Successfully")
   saveCategories(categories);
 
   // 2️⃣ Add empty category to products database
@@ -117,3 +118,5 @@ function saveProducts() {
 }
 
 
+
+console.log();

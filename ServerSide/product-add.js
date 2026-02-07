@@ -41,15 +41,14 @@ if (editingId) {
 
   if (editingProduct) {
     // Populate form
-   
+
     titleInput.value = editingProduct.title;
     subTitleInput.value = editingProduct.subTitle;
-    
     categoryInput.value = editingProduct.category;
     priceInput.value = editingProduct.price;
     descriptionInput.value = editingProduct.description;
 
-    // Optional: show existing image preview
+    // show existing image preview
     const imgPreview = document.createElement("img");
     imgPreview.src = editingProduct.image;
     imgPreview.height = 100;
@@ -64,11 +63,11 @@ if (editingId) {
 // Handle submit
 submitBtn.addEventListener("click", e => {
   e.preventDefault();
-const currentAdmin = JSON.parse(sessionStorage.getItem('currentAdmin'));
-    if (!currentAdmin) {
-        alert("Please log in first!");
-        return;
-    }
+  const currentAdmin = JSON.parse(sessionStorage.getItem('currentAdmin'));
+  if (!currentAdmin) {
+    alert("Please log in first!");
+    return;
+  }
   // Basic validation
   if (!editingProduct && !imageInput.files.length) return alert("Please upload a product image!");
   if (!titleInput.value.trim()) return alert("Please enter product title!");
@@ -87,12 +86,12 @@ const currentAdmin = JSON.parse(sessionStorage.getItem('currentAdmin'));
       editingProduct.description = descriptionInput.value.trim();
 
       // Only update image if a new one was uploaded
-      if (imageData !== null) { 
-    editingProduct.image = imageData;
-  } else if (!editingProduct.image) {
-    alert("No image found for this product!");
-    return;
-  }
+      if (imageData !== null) {
+        editingProduct.image = imageData;
+      } else if (!editingProduct.image) {
+        alert("No image found for this product!");
+        return;
+      }
 
 
       saveProducts(productsData);
@@ -108,7 +107,7 @@ const currentAdmin = JSON.parse(sessionStorage.getItem('currentAdmin'));
         description: descriptionInput.value.trim(),
         image: imageData
       };
-      productsData.push(newProduct); 
+      productsData.push(newProduct);
       saveProducts(productsData);
       alert(`${newProduct.title} added successfully!`);
     }

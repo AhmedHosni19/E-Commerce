@@ -1,6 +1,7 @@
 
-let productsData = JSON.parse(localStorage.getItem("products")) || products;
+let productsDataRaw = JSON.parse(localStorage.getItem("products")) || products;
 
+let productsData = Object.values(productsDataRaw).flat();
 function addToCart(productId) {
   // get cart from localStorage or create empty array
   let cart = JSON.parse(localStorage.getItem("cart")) || [];

@@ -5,7 +5,7 @@ const categoryInput = document.getElementById("category-select");
 const priceInput = document.getElementById("price");
 const descriptionInput = document.getElementById("description");
 const submitBtn = document.getElementById("submitBtn");
-const title=document.getElementById("title");
+const title=document.getElementById("Ptitle");
 title.textContent="Add New Product";
 let productsDataRaw = JSON.parse(localStorage.getItem("products")) || products;
 

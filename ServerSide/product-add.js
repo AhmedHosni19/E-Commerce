@@ -5,7 +5,8 @@ const categoryInput = document.getElementById("category-select");
 const priceInput = document.getElementById("price");
 const descriptionInput = document.getElementById("description");
 const submitBtn = document.getElementById("submitBtn");
-
+const title=document.getElementById("title");
+title.textContent="Add New Product";
 let productsDataRaw = JSON.parse(localStorage.getItem("products")) || products;
 
 let productsData = Object.values(productsDataRaw).flat();
@@ -48,12 +49,13 @@ if (editingId) {
     priceInput.value = editingProduct.price;
     descriptionInput.value = editingProduct.description;
 
+
     // show existing image preview
     const imgPreview = document.createElement("img");
     imgPreview.src = editingProduct.image;
     imgPreview.height = 100;
     imageInput.parentElement.appendChild(imgPreview);
-
+    title.textContent="Edit The Product"
     submitBtn.textContent = "Update Product";
   } else {
     alert("Product not found!");

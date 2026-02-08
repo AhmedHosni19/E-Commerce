@@ -1,5 +1,8 @@
 const container = document.getElementById("products");
-
+const STORAGE_KEY = "categories_db";
+function getCategories() {
+  return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+}
 // =======================
 // CART
 // =======================
@@ -125,11 +128,38 @@ function renderProducts(list) {
 
     container.appendChild(card);
   });
-}
 
+
+}
 // =======================
 // CATEGORY DROPDOWN / BUTTONS
 // =======================
+const menu = document.querySelector(".dropdown-menu");
+const categories = getCategories();
+
+let html = `
+  <li>
+    <a class="dropdown-item" href="#" data-category="All">
+      All Products
+    </a>
+  </li>
+  <li><hr class="dropdown-divider"></li>
+`;
+
+categories.forEach(cat => {
+  html += `
+    <li>
+      <a class="dropdown-item" href="#" data-category="${cat}">
+        ${cat}
+      </a>
+    </li>
+  `;
+});
+
+menu.innerHTML = html;
+
+
+
 document.querySelectorAll(".dropdown-item").forEach(item => {
   item.addEventListener("click", e => {
     e.preventDefault();

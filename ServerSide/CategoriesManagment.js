@@ -65,8 +65,9 @@ function renderCategories() {
 // ===============================
 // ADD CATEGORY
 // ===============================
+
 function addCategory() {
-  const categoryName = newCategoryInput.value.trim();
+const categoryName = newCategoryInput.value.trim();
 
   if (!categoryName) {
     alert("Category name cannot be empty");

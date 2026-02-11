@@ -4,6 +4,7 @@ const sidebarContainer = document.getElementById("dynamic-sidebar");
 const newCategoryInput = document.getElementById("newCategoryInput");
 const addCategoryBtn = document.getElementById("addCategoryBtn");
 
+  const currentAdmin = JSON.parse(sessionStorage.getItem('currentAdmin'));
 
 function initCategories() {
   if (!localStorage.getItem(STORAGE_KEY)) {
@@ -102,7 +103,7 @@ function addCategory() {
   let categories = getCategories();
 
   if (categories.includes(categoryName)) {
-    alert("Category already exists");
+    alert(categoryName +" Category is already exist");
     return;
   }
 
@@ -115,7 +116,7 @@ function addCategory() {
   productsDB[categoryName] = [];
   saveProductsDB(productsDB);
 
-  alert(`${categoryName} added successfully`);
+  alert(`${categoryName} category added successfully`);
 
   newCategoryInput.value = "";
   renderCategories();
@@ -140,13 +141,10 @@ function editCategory(oldName) {
   const newName = prompt("Enter new category name:", oldName);
 
   if (!newName || newName.trim() === oldName) return;
-
+  alert("Category edited Sucessfully")
   let categories = getCategories();
 
-  if (categories.includes(newName)) {
-    alert("Category is already exists");
-    return;
-  }
+
 
   categories = categories.map(cat => (cat === oldName ? newName : cat));
   saveCategories(categories);
@@ -171,11 +169,19 @@ sidebarContainer.addEventListener("click", (e) => {
   if (!button) return;
 
   if (button.classList.contains("delete-btn")) {
-    deleteCategory(button.dataset.category);
+  if (!currentAdmin) {
+    alert("Please log in first!");
+    return;
+  }else
+    { deleteCategory(button.dataset.category);
+    }
   }
 
   if (button.classList.contains("edit-btn")) {
-    editCategory(button.dataset.category);
+    if (!currentAdmin) {
+    alert("Please log in first!");
+    return;
+  }else {editCategory(button.dataset.category);}
   }
 });
 

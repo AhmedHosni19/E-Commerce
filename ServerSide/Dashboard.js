@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (confirmBtn) {
                 confirmBtn.onclick = () => {
                     orders[index].status = "Confirmed"; 
-                    localStorage.setItem("orders", JSON.stringify(orders)); // Save
+                    localStorage.setItem("orders", JSON.stringify(orders)); 
                     renderOrders(); 
                 };
             }

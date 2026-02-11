@@ -10,6 +10,9 @@ title.textContent="Add New Product";
 let productsDataRaw = JSON.parse(localStorage.getItem("products")) || products;
 
 let productsData = Object.values(productsDataRaw).flat();
+function saveProducts() {
+  localStorage.setItem("products", JSON.stringify(productsData));
+}
 
 // Load products from localStorage
 function loadProducts() {
@@ -30,7 +33,6 @@ const params = new URLSearchParams(window.location.search);
 const editingId = Number(params.get("id"));
 let editingProduct = null;
 const categories = JSON.parse(localStorage.getItem("categories_db")) || [];
-
 categories.forEach(catName => {
   const option = document.createElement('option');
   option.value = catName;
@@ -41,7 +43,6 @@ if (editingId) {
   editingProduct = productsData.find(p => p.id === editingId);
 
   if (editingProduct) {
-    // Populate form
 
     titleInput.value = editingProduct.title;
     subTitleInput.value = editingProduct.subTitle;
@@ -62,7 +63,6 @@ if (editingId) {
   }
 }
 
-// Handle submit
 submitBtn.addEventListener("click", e => {
   e.preventDefault();
   const currentAdmin = JSON.parse(sessionStorage.getItem('currentAdmin'));
@@ -70,7 +70,6 @@ submitBtn.addEventListener("click", e => {
     alert("Please log in first!");
     return;
   }
-  // Basic validation
   if (!editingProduct && !imageInput.files.length) return alert("Please upload a product image!");
   if (!titleInput.value.trim()) return alert("Please enter product title!");
   if (!subTitleInput.value.trim()) return alert("Please enter product subtitle!");
@@ -97,7 +96,7 @@ submitBtn.addEventListener("click", e => {
 
 
       saveProducts(productsData);
-      alert(`${editingProduct.title} updated successfully!`);
+      alert(`${editingProduct.title} updated successfully! `);
     } else {
       // Create new product
       const newProduct = {

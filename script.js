@@ -1,6 +1,3 @@
-// ==========================================
-// Utility Functions
-// ==========================================
 
 // Validation Functions
 function validateEmail(email) {
@@ -53,9 +50,7 @@ function clearErrors() {
     });
 }
 
-// ==========================================
 // Navigation Functions
-// ==========================================
 
 function hideAll() {
     const containers = document.querySelectorAll('.form-container, .dashboard');
@@ -82,9 +77,7 @@ function showAdminLogin() {
     document.getElementById('adminLogin').classList.remove('hidden');
 }
 
-// ==========================================
 // Initialization
-// ==========================================
 
 function initializeApp() {
     // Initialize default admin if no admins exist
@@ -101,9 +94,7 @@ function initializeApp() {
     }
 }
 
-// ==========================================
 // Password Strength Indicator
-// ==========================================
 
 document.getElementById('registerPassword')?.addEventListener('input', function(e) {
     const password = e.target.value;
@@ -127,9 +118,7 @@ document.getElementById('registerPassword')?.addEventListener('input', function(
     }
 });
 
-// ==========================================
 // Customer Login
-// ==========================================
 
 document.getElementById('customerLoginForm')?.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -140,15 +129,6 @@ document.getElementById('customerLoginForm')?.addEventListener('submit', functio
 
     let hasError = false;
 
-    // if (!validateEmail(email)) {
-    //     showError('customerLoginEmail', 'Please enter a valid email address');
-    //     hasError = true;
-    // }
-
-    // if (!validatePassword(password)) {
-    //     showError('customerLoginPassword', 'Password must be at least 6 characters');
-    //     hasError = true;
-    // }
 
     if (hasError) return;
 
@@ -163,9 +143,7 @@ document.getElementById('customerLoginForm')?.addEventListener('submit', functio
     }
 });
 
-// ==========================================
 // Customer Registration
-// ==========================================
 
 document.getElementById('customerRegisterForm')?.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -215,9 +193,7 @@ document.getElementById('customerRegisterForm')?.addEventListener('submit', func
     window.location.href = 'Home.html';
 });
 
-// ==========================================
 // Admin Login
-// ==========================================
 
 document.getElementById('adminLoginForm')?.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -251,9 +227,7 @@ document.getElementById('adminLoginForm')?.addEventListener('submit', function(e
     }
 });
 
-// ==========================================
 // Add New Admin
-// ==========================================
 
 document.getElementById('addAdminForm')?.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -308,9 +282,7 @@ document.getElementById('addAdminForm')?.addEventListener('submit', function(e) 
 
 });
 
-// ==========================================
 // Dashboard Functions
-// ==========================================
 
 function showCustomerDashboard(user) {
     hideAll();
@@ -346,9 +318,7 @@ function displayAdminList() {
     `).join('');
 }
 
-// ==========================================
 // Logout
-// ==========================================
 let signoutButtons = document.querySelectorAll('.signout-button');
 signoutButtons.forEach(button => {
     button.addEventListener('click', logout);
@@ -356,15 +326,13 @@ signoutButtons.forEach(button => {
 });
 
 function logout() {
-    sessionStorage.removeItem('currentUser');
-    sessionStorage.removeItem('currentAdmin');
+    // sessionStorage.removeItem('currentUser');
+    // sessionStorage.removeItem('currentAdmin');
     location.replace('index.html');
 
 }
 initializeApp()
-// ==========================================
 // Session Management on Load
-// ==========================================
 
 // window.addEventListener('load', function() {
 //     initializeApp();

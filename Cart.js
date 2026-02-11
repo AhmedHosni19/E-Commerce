@@ -144,7 +144,7 @@ function saveDashboardCart() {
 function addToDashboardCart(products) {
  dashboardCart.push(products );
   saveDashboardCart();
-  alert(`${products.title} added to dashboard cart 🛒`);
+  alert(`${products.title} added to dashboard cart`);
 }
   
 
@@ -161,16 +161,14 @@ function orderSummery() {
     }
 
     // Get total price
-    const totalPrice = calculateTotal(); // make sure this function returns a number
+    const totalPrice = calculateTotal(); 
 
     let userId = currentUser.id;
 
-    console.log(`Order placed by user ID: ${userId}`);
 
     const order = { orderId, userId, totalPrice };
 
-    // --- Save to localStorage ---
-    // Get existing orders first
+    
     let orders = JSON.parse(localStorage.getItem("orders")) || [];
 
     // Add this order
@@ -204,7 +202,7 @@ if(submitOrderBtn) {
         return;
       }
       location.reload();
-        const order = orderSummery();      // save order
+        const order = orderSummery();     
         localStorage.removeItem("cart"); 
                 alert(`Order #${order.orderId} submitted!`);
 

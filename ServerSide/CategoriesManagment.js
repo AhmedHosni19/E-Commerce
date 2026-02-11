@@ -4,9 +4,7 @@ const sidebarContainer = document.getElementById("dynamic-sidebar");
 const newCategoryInput = document.getElementById("newCategoryInput");
 const addCategoryBtn = document.getElementById("addCategoryBtn");
 
-// ===============================
-// INITIAL 
-// ===============================
+
 function initCategories() {
   if (!localStorage.getItem(STORAGE_KEY)) {
     const categoriesFromDB = Object.keys(products);
@@ -35,9 +33,7 @@ function saveProductsDB(db) {
   localStorage.setItem("products", JSON.stringify(db));
 }
 
-// ===============================
-// RENDER SIDEBAR
-// ===============================
+// Render Sidebar
 function renderCategories() {
   const categories = getCategories();
   sidebarContainer.innerHTML = "";
@@ -93,14 +89,13 @@ function renderCategories() {
   });
 }
 
-// ===============================
-// ADD CATEGORY
-// ===============================
+// Add Category
+
 function addCategory() {
   const categoryName = newCategoryInput.value.trim();
 
   if (!categoryName) {
-    alert("Category name cannot be empty");
+    alert("Category name can't be empty");
     return;
   }
 
@@ -115,7 +110,7 @@ function addCategory() {
   categories.push(categoryName);
   saveCategories(categories);
 
-  // Add empty category to products DB
+  // Add an empty category to products database
   const productsDB = getProductsDB();
   productsDB[categoryName] = [];
   saveProductsDB(productsDB);
@@ -126,9 +121,7 @@ function addCategory() {
   renderCategories();
 }
 
-// ===============================
-// DELETE CATEGORY
-// ===============================
+// Delete Category
 function deleteCategory(categoryName) {
   if (!confirm(`Delete "${categoryName}" category?`)) return;
 
@@ -142,9 +135,7 @@ function deleteCategory(categoryName) {
   renderCategories();
 }
 
-// ===============================
-// EDIT CATEGORY
-// ===============================
+// edit category
 function editCategory(oldName) {
   const newName = prompt("Enter new category name:", oldName);
 
@@ -153,7 +144,7 @@ function editCategory(oldName) {
   let categories = getCategories();
 
   if (categories.includes(newName)) {
-    alert("Category already exists");
+    alert("Category is already exists");
     return;
   }
 
@@ -168,16 +159,13 @@ function editCategory(oldName) {
   renderCategories();
 }
 
-// ===============================
-// EVENTS
-// ===============================
+
 addCategoryBtn.addEventListener("click", addCategory);
 
 newCategoryInput.addEventListener("keydown", e => {
   if (e.key === "Enter") addCategory();
 });
 
-// Event delegation for dynamic buttons
 sidebarContainer.addEventListener("click", (e) => {
   const button = e.target.closest("button");
   if (!button) return;
@@ -192,9 +180,7 @@ sidebarContainer.addEventListener("click", (e) => {
 });
 
 
-// ===============================
-// INIT
-// ===============================
+
 document.addEventListener("DOMContentLoaded", () => {
   initCategories();
   renderCategories();

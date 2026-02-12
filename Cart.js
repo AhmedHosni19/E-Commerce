@@ -1,7 +1,14 @@
 const SHIPPING_RATE = 10;
   const TAX_RATE = 0.08;
   let discount = 0;
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+function getUserStorageKey(baseKey) {
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+  const userIdentifier = currentUser?.id || currentUser?.email || "guest";
+  return `${baseKey}_${userIdentifier}`;
+}
+
+const CART_STORAGE_KEY = getUserStorageKey("cart");
+let cart = JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || [];
 
 function calculateTotal() {
     let subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
@@ -29,13 +36,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Cart
 
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || [];
 
   const templateRow = cartContainer.querySelector(".row");
   cartContainer.innerHTML = "";
 
   function saveCart() {
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
   }
 
   function toggleEmptyState() {
@@ -124,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   clearCartBtn.addEventListener("click", () => {
-    localStorage.removeItem("cart");
+    localStorage.removeItem(CART_STORAGE_KEY);
     cart = [];
     discount = 0;
     saveCart();
@@ -203,7 +210,7 @@ if(submitOrderBtn) {
       }
       location.reload();
         const order = orderSummery();     
-        localStorage.removeItem("cart"); 
+        localStorage.removeItem(CART_STORAGE_KEY); 
                 alert(`Order #${order.orderId} submitted!`);
 
     cart = [];

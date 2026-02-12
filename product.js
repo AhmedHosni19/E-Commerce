@@ -1,10 +1,18 @@
 
 let productsDataRaw = JSON.parse(localStorage.getItem("products")) || products;
 
+function getUserStorageKey(baseKey) {
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+  const userIdentifier = currentUser?.id || currentUser?.email || "guest";
+  return `${baseKey}_${userIdentifier}`;
+}
+
+const CART_STORAGE_KEY = getUserStorageKey("cart");
+
 let productsData = Object.values(productsDataRaw).flat();
 function addToCart(productId) {
   // get cart from localStorage or create empty array
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || [];
 
   // check if product already in cart
   const existingItem = cart.find(item => item.id === productId);
@@ -18,11 +26,9 @@ alert(`${product.title} is already in your cart `);
 
   }
 
-  localStorage.setItem("cart", JSON.stringify(cart));
+  localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
 
 }
-
-let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
 
 const params = new URLSearchParams(window.location.search);

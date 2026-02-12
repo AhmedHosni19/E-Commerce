@@ -2,6 +2,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const wishlistContainer = document.getElementById("full-div");
   const emptyDiv = document.getElementById("empty-div");
   const clearWishlistBtn = document.getElementById("clearCart");
+function getUserStorageKey(baseKey) {
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+  const userIdentifier = currentUser?.id || currentUser?.email || "guest";
+  return `${baseKey}_${userIdentifier}`;
+}
+
+const WISHLIST_STORAGE_KEY = getUserStorageKey("wishlist");
 function loadProducts() {
   const stored = localStorage.getItem("products");
   return stored ? JSON.parse(stored) : [...defaultProducts];
@@ -14,13 +21,13 @@ function saveProducts(products) {
   // ===============================
   // Wishlist Storage
   // ===============================
-  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+  let wishlist = JSON.parse(localStorage.getItem(WISHLIST_STORAGE_KEY)) || [];
 
   const templateRow = wishlistContainer.querySelector(".row");
   wishlistContainer.innerHTML = "";
 
   function saveWishlist() {
-    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    localStorage.setItem(WISHLIST_STORAGE_KEY, JSON.stringify(wishlist));
   }
 
   function toggleEmptyState() {

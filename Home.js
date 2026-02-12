@@ -1,14 +1,5 @@
 const container = document.getElementById("products");
 const STORAGE_KEY = "categories_db";
-function getUserStorageKey(baseKey) {
-  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-  const userIdentifier = currentUser?.id || currentUser?.email || "guest";
-  return `${baseKey}_${userIdentifier}`;
-}
-
-const CART_STORAGE_KEY = getUserStorageKey("cart");
-const WISHLIST_STORAGE_KEY = getUserStorageKey("wishlist");
-
 function getCategories() {
   return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 }
@@ -37,10 +28,10 @@ function saveProducts() {
   localStorage.setItem("products", JSON.stringify(productsData));
 }
 
-let cart = JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 function saveCart() {
-  localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
 
 function addToCart(product) {
@@ -55,10 +46,10 @@ function addToCart(product) {
 }
 
 //handle adding to wishlist
-let wishlist = JSON.parse(localStorage.getItem(WISHLIST_STORAGE_KEY)) || [];
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
 function saveWishlist() {
-  localStorage.setItem(WISHLIST_STORAGE_KEY, JSON.stringify(wishlist));
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
 }
 
 function addToWishlist(product) {

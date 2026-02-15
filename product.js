@@ -2,25 +2,35 @@
 let productsDataRaw = JSON.parse(localStorage.getItem("products")) || products;
 
 let productsData = Object.values(productsDataRaw).flat();
-function addToCart(productId) {
-    // get cart from localStorage or create empty array
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  function addToCart(product) {
 
-    // check if product already in cart
-    const existingItem = cart.find(item => item.id === productId);
+    const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
-    if (existingItem) {
-        alert(`${product.title} is already in your cart `);
-    } else {
-        const product = productsData.find(p => p.id === productId);
-        cart.push({ ...product, qty: 1 });
-        alert(`${product.title} added to your cart `);
-
+    if (!currentUser) {
+        alert("Please login first!");
+        window.location.href = "index.html";
+        return;
     }
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+    const userEmail = currentUser.email.toLowerCase();
+    const cartKey = "cart_" + userEmail;
 
+    let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+
+    // Check if product already exists
+    const existingProduct = cart.find(item => item.id === product.id);
+
+    if (existingProduct) {
+        existingProduct.qty += 1;
+    } else {
+        cart.push({ ...product, qty: 1 });
+    }
+
+    localStorage.setItem(cartKey, JSON.stringify(cart));
+
+    alert("Product added to cart!");
 }
+
 
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 

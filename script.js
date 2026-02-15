@@ -58,7 +58,9 @@ function hideAll() {
 }
 
 function showCustomerLogin() {
-    localStorage.clear();
+    sessionStorage.removeItem('currentUser');
+sessionStorage.removeItem('currentAdmin');
+
 location.reload();
     hideAll();
     clearErrors();
@@ -327,24 +329,11 @@ signoutButtons.forEach(button => {
 
 function logout() {
     
-    location.replace('index.html');
+    sessionStorage.removeItem('currentUser');
+    sessionStorage.removeItem('currentAdmin');
+    window.location.href = 'index.html';
+
 
 }
 initializeApp()
-// Session Management on Load
 
-// window.addEventListener('load', function() {
-//     initializeApp();
-    
-//     const currentUser = sessionStorage.getItem('currentUser');
-//     const currentAdmin = sessionStorage.getItem('currentAdmin');
-
-    // if (currentAdmin) {
-    //     showAdminDashboard(JSON.parse(currentAdmin));
-    // } else if (currentUser) {
-    //     showCustomerDashboard(JSON.parse(currentUser));
-    // } 
-    // else {
-    //     showCustomerLogin();
-    // }
-// });

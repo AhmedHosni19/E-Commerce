@@ -36,16 +36,37 @@ function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-function addToCart(product) {
-  const existing = cart.find(item => item.id === product.id);
-  if (existing) {
-    existing.qty++;
-  } else {
-    cart.push({ ...product, qty: 1 });
-  }
-  saveCart();
-  alert(`${product.title} added to your cart`);
+
+  function addToCart(product) {
+
+    const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+
+    if (!currentUser) {
+        alert("Please login first!");
+        window.location.href = "index.html";
+        return;
+    }
+
+    const userEmail = currentUser.email.toLowerCase();
+    const cartKey = "cart_" + userEmail;
+
+    let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+
+    // Check if product already exists
+    const existingProduct = cart.find(item => item.id === product.id);
+
+    if (existingProduct) {
+        existingProduct.qty += 1;
+    } else {
+        cart.push({ ...product, qty: 1 });
+    }
+
+    localStorage.setItem(cartKey, JSON.stringify(cart));
+
+    alert("Product added to cart!");
 }
+
+
 
 /* =======================
    WISHLIST
@@ -57,14 +78,29 @@ function saveWishlist() {
 }
 
 function addToWishlist(product) {
-  const exists = wishlist.some(item => item.id === product.id);
-  if (exists) {
-    alert(`${product.title} is already in your wishlist`);
-    return;
-  }
-  wishlist.push(product);
-  saveWishlist();
-  alert(`${product.title} added to your wishlist`);
+
+    const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+
+    if (!currentUser) {
+        alert("Please login first!");
+        window.location.href = "index.html";
+        return;
+    }
+
+    const userEmail = currentUser.email.toLowerCase();
+    const wishlistKey = "wishlist_" + userEmail;
+
+    let wishlist = JSON.parse(localStorage.getItem(wishlistKey)) || [];
+
+    const exists = wishlist.some(item => item.id === product.id);
+
+    if (!exists) {
+        wishlist.push(product);
+        localStorage.setItem(wishlistKey, JSON.stringify(wishlist));
+        alert("Added to wishlist!");
+    } else {
+        alert("Already in wishlist");
+    }
 }
 
 /* =======================

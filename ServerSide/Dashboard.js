@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             row.innerHTML = `
     <div class="col-3 d-flex align-items-center justify-content-center fw-bold">#ORD-${order.orderId}</div>
-    <div class="col-3 d-flex align-items-center justify-content-center fw-bold">#CUST-${order.userId.slice(-5)}</div>
+    <div class="col-3 d-flex align-items-center justify-content-center fw-bold">${order.email}</div>
     <div class="col-3 d-flex align-items-center justify-content-center fw-bold ">$${order.totalPrice.toFixed(2)}</div>
     <div class="col-3 d-flex align-items-center justify-content-center ">
         ${actionContent}

@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
       emptyDiv.style.display = "flex";
     } else {
       wishlistContainer.style.display = "block";
-      emptyDiv.style.display = "none";
+      emptyDiv.style.setProperty("display" ,"none", "important");
     }
   }
 

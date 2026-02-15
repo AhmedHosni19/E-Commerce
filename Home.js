@@ -1,33 +1,35 @@
 const container = document.getElementById("products");
 const STORAGE_KEY = "categories_db";
+
+/* =======================
+   GET CATEGORIES
+======================= */
 function getCategories() {
   return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 }
-// =======================
-// CART
-// =======================
-// Load products - handle both array and object structures
+
+/* =======================
+   LOAD PRODUCTS
+======================= */
 let productsDataRaw = JSON.parse(localStorage.getItem("products")) || products;
 
-// Ensure productsData is always an array
 let productsData = [];
 
-// Check the structure and flatten if needed
 if (Array.isArray(productsDataRaw)) {
   productsData = productsDataRaw;
-} else if (productsDataRaw && typeof productsDataRaw === 'object') {
-  // If it's an object, flatten all values into a single array
+} else if (productsDataRaw && typeof productsDataRaw === "object") {
   productsData = Object.values(productsDataRaw).flat();
 } else {
-  // Fallback to empty array
   productsData = [];
 }
 
-// save products
 function saveProducts() {
   localStorage.setItem("products", JSON.stringify(productsData));
 }
 
+/* =======================
+   CART
+======================= */
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 function saveCart() {
@@ -42,10 +44,12 @@ function addToCart(product) {
     cart.push({ ...product, qty: 1 });
   }
   saveCart();
-  alert(`${product.title} added to your cart `);
+  alert(`${product.title} added to your cart`);
 }
 
-//handle adding to wishlist
+/* =======================
+   WISHLIST
+======================= */
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
 function saveWishlist() {
@@ -55,16 +59,27 @@ function saveWishlist() {
 function addToWishlist(product) {
   const exists = wishlist.some(item => item.id === product.id);
   if (exists) {
-    alert(`${product.title} is already in your wishlist `);
+    alert(`${product.title} is already in your wishlist`);
     return;
   }
   wishlist.push(product);
   saveWishlist();
-  alert(`${product.title} added to your wishlist `);
+  alert(`${product.title} added to your wishlist`);
 }
 
-// category filtter
+/* =======================
+   PAGINATION
+======================= */
+const PRODUCTS_PER_PAGE = 12;
+let currentPage = 1;
+let currentList = [];
+
+/* =======================
+   FILTER BY CATEGORY
+======================= */
 function filterByCategory(category) {
+  currentPage = 1;
+
   if (category === "All") {
     renderProducts(productsData);
   } else {
@@ -73,17 +88,18 @@ function filterByCategory(category) {
   }
 }
 
-
+/* =======================
+   RENDER PRODUCTS
+======================= */
 function renderProducts(list) {
-  // Ensure list is an array
   if (!Array.isArray(list)) {
     console.error("renderProducts received non-array:", list);
     list = [];
   }
-// Clear container before rendering
-  container.innerHTML = ""; 
 
-  // Check if list is empty
+  currentList = list;
+  container.innerHTML = "";
+
   if (list.length === 0) {
     container.innerHTML = `
       <div class="col-12 text-center py-5">
@@ -94,72 +110,143 @@ function renderProducts(list) {
     return;
   }
 
-  list.forEach(product => {
+  const start = (currentPage - 1) * PRODUCTS_PER_PAGE;
+  const end = start + PRODUCTS_PER_PAGE;
+  const paginatedItems = list.slice(start, end);
+
+  paginatedItems.forEach(product => {
     const card = document.createElement("div");
-    card.className = "card p-2 m-2";
     card.style.width = "18rem";
 
     card.innerHTML = `
-      <img src="${product.image || 'placeholder.jpg'}" class="card-img-top" height="160" alt="${product.title}">
-      <div class="card-body text-center">
-        <h5 class="card-title">
-          <a href="product.html?id=${product.id}" class="text-decoration-none">
-            ${product.title || 'Untitled Product'}
-          </a>
-        </h5>
-        <p class="card-text">${product.subTitle || ''}</p>
-        <p class="text-primary">$${product.price || 0}</p>
-        <div class="d-flex justify-content-center gap-2">
-          <button class="btn btn-primary text-white btn-md" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; line-height: 1;">
-    Add to Cart
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" style="height: 1.1em; width: auto; fill: currentColor;">
-        <path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/>
-    </svg>
-</button>
-<button class="btn btn-outline-danger btn-sm" style="display: inline-flex; align-items: center; justify-content: center; gap: 5px; line-height: 1;">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" style="height: 1.1em; width: auto; fill: currentColor;">
-        <path d="M305 151.1L320 171.8L335 151.1C360 116.5 400.2 96 442.9 96C516.4 96 576 155.6 576 229.1L576 231.7C576 343.9 436.1 474.2 363.1 529.9C350.7 539.3 335.5 544 320 544C304.5 544 289.2 539.4 276.9 529.9C203.9 474.2 64 343.9 64 231.7L64 229.1C64 155.6 123.6 96 197.1 96C239.8 96 280 116.5 305 151.1z"/>
-    </svg>
-    Wishlist
-</button>        </div>
-      </div>
-    `;
+<div class="shop-card">
 
-    const [cartBtn, wishBtn] = card.querySelectorAll("button");
-    cartBtn.onclick = () => addToCart(product);
-    wishBtn.onclick = () => addToWishlist(product);
+  <div class="image-box">
+    <img src="${product.image || 'placeholder.jpg'}" 
+         alt="${product.title }" height="160px">
+  </div>
+
+  <div class="content">
+
+    <div class="price">
+      $${product.price ?? 0}
+    </div>
+
+    <div class="title">
+      <a href="product.html?id=${product.id}">
+        ${product.title }
+      </a>
+    </div>
+
+    <div class="desc">
+      ${product.subTitle}
+    </div>
+
+    <div class="icons">
+
+      <div class="icon wishlist-btn" data-id="${product.id}">
+        <svg viewBox="0 0 512 512">
+          <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/>
+        </svg>
+      </div>
+
+      <div class="icon add-to-cart-btn" data-id="${product.id}">
+        <svg viewBox="0 0 576 512">
+          <path d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"/>
+        </svg>
+      </div>
+
+      <div class="icon">
+        <a href="product.html?id=${product.id}">
+          <svg viewBox="0 0 640 640">
+            <path d="M320 96C239.2 96 174.5 132.8 127.4 176.6C80.6 220.1 49.3 272 34.4 307.7C31.1 315.6 31.1 324.4 34.4 332.3C49.3 368 80.6 420 127.4 463.4C174.5 507.1 239.2 544 320 544C400.8 544 465.5 507.2 512.6 463.4C559.4 419.9 590.7 368 605.6 332.3C608.9 324.4 608.9 315.6 605.6 307.7C590.7 272 559.4 220 512.6 176.6C465.5 132.9 400.8 96 320 96z"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+`;
+
+    const wishBtn = card.querySelector(".wishlist-btn");
+    const cartBtn = card.querySelector(".add-to-cart-btn");
+
+    if (cartBtn) cartBtn.onclick = () => addToCart(product);
+    if (wishBtn) wishBtn.onclick = () => addToWishlist(product);
 
     container.appendChild(card);
   });
 
-
+  renderPagination();
 }
-//Category dropdown List
+
+/* =======================
+   RENDER PAGINATION
+======================= */
+function renderPagination() {
+  const totalPages = Math.ceil(currentList.length / PRODUCTS_PER_PAGE);
+
+  let paginationContainer = document.getElementById("pagination");
+
+  if (!paginationContainer) {
+    paginationContainer = document.createElement("div");
+    paginationContainer.id = "pagination";
+    paginationContainer.style.textAlign = "center";
+    paginationContainer.style.margin = "30px 0";
+    container.after(paginationContainer);
+  }
+
+  paginationContainer.innerHTML = "";
+
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement("button");
+    btn.innerText = i;
+    btn.style.margin = "0 5px";
+    btn.style.padding = "6px 12px";
+    btn.style.cursor = "pointer";
+
+    if (i === currentPage) {
+      btn.style.background = "black";
+      btn.style.color = "white";
+    }
+
+    btn.onclick = () => {
+      currentPage = i;
+      renderProducts(currentList);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    paginationContainer.appendChild(btn);
+  }
+}
+
+/* =======================
+   CATEGORY DROPDOWN
+======================= */
 const menu = document.querySelector(".dropdown-menu");
 const categories = getCategories();
 
 let html = `
-  <li>
-    <a class="dropdown-item" href="#" data-category="All">
-      All Products
-    </a>
-  </li>
-  <li><hr class="dropdown-divider"></li>
+<li>
+  <a class="dropdown-item" href="#" data-category="All">
+    All Products
+  </a>
+</li>
+<li><hr class="dropdown-divider"></li>
 `;
 
 categories.forEach(cat => {
   html += `
-    <li>
-      <a class="dropdown-item" href="#" data-category="${cat}">
-        ${cat}
-      </a>
-    </li>
+  <li>
+    <a class="dropdown-item" href="#" data-category="${cat}">
+      ${cat}
+    </a>
+  </li>
   `;
 });
 
-menu.innerHTML = html;
-
-
+if (menu) menu.innerHTML = html;
 
 document.querySelectorAll(".dropdown-item").forEach(item => {
   item.addEventListener("click", e => {
@@ -169,5 +256,5 @@ document.querySelectorAll(".dropdown-item").forEach(item => {
   });
 });
 
-
+  // INITIAL RENDER
 renderProducts(productsData);

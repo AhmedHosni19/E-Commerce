@@ -204,15 +204,15 @@ document.getElementById('adminLoginForm')?.addEventListener('submit', function(e
 
     let hasError = false;
 
-    // if (!validateEmail(email)) {
-    //     showError('adminLoginEmail', 'Please enter a valid email address');
-    //     hasError = true;
-    // }
+    if (!validateEmail(email)) {
+        showError('adminLoginEmail', 'Please enter a valid email address');
+        hasError = true;
+    }
 
-    // if (!validatePassword(password)) {
-    //     showError('adminLoginPassword', 'Password must be at least 6 characters');
-    //     hasError = true;
-    // }
+    if (!validatePassword(password)) {
+        showError('adminLoginPassword', 'Password must be at least 6 characters');
+        hasError = true;
+    }
 
     if (hasError) return;
 
@@ -326,8 +326,7 @@ signoutButtons.forEach(button => {
 });
 
 function logout() {
-    // sessionStorage.removeItem('currentUser');
-    // sessionStorage.removeItem('currentAdmin');
+    
     location.replace('index.html');
 
 }

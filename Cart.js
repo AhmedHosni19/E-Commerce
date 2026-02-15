@@ -39,6 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function toggleEmptyState() {
+      function renderOrders() {
+        // If no user is logged in, show the empty state and stop
+       }
     if (cart.length === 0) {
       cartContainer.style.display = "none";
       emptyDiv.style.display = "flex";
@@ -70,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     cart.forEach((item, index) => {
       const row = templateRow.cloneNode(true);
-
+ 
       // row.querySelector("#item-img").src=item-img;
       row.querySelector("#item-img img").src = item.image;
       row.querySelector("#item-img img").alt = item.title;
@@ -213,3 +216,5 @@ if(submitOrderBtn) {
     }
      
 }
+
+  

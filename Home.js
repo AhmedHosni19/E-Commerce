@@ -228,24 +228,52 @@ function renderPagination() {
   if (!paginationContainer) {
     paginationContainer = document.createElement("div");
     paginationContainer.id = "pagination";
-    paginationContainer.style.textAlign = "center";
-    paginationContainer.style.margin = "30px 0";
-    container.after(paginationContainer);
+document.querySelector(".container-fluid").appendChild(paginationContainer);
   }
 
   paginationContainer.innerHTML = "";
 
+  // 🔥 CENTER USING FLEX
+  paginationContainer.style.display = "flex";
+  paginationContainer.style.justifyContent = "center";
+  paginationContainer.style.alignItems = "center";
+  paginationContainer.style.gap = "10px";
+  paginationContainer.style.margin = "40px 0";
+
   for (let i = 1; i <= totalPages; i++) {
     const btn = document.createElement("button");
     btn.innerText = i;
-    btn.style.margin = "0 5px";
-    btn.style.padding = "6px 12px";
-    btn.style.cursor = "pointer";
 
+    // 🔥 Clean Modern Style
+    btn.style.padding = "8px 14px";
+    btn.style.border = "1px solid #ddd";
+    btn.style.background = "#fff";
+    btn.style.cursor = "pointer";
+    btn.style.borderRadius = "6px";
+    btn.style.transition = "0.2s ease";
+    btn.style.fontWeight = "500";
+
+    // Active page
     if (i === currentPage) {
-      btn.style.background = "black";
-      btn.style.color = "white";
+      btn.style.background = "#000";
+      btn.style.color = "#fff";
+      btn.style.border = "1px solid #000";
     }
+
+    // Hover effect
+    btn.onmouseenter = () => {
+      if (i !== currentPage) {
+        btn.style.background = "#000";
+        btn.style.color = "#fff";
+      }
+    };
+
+    btn.onmouseleave = () => {
+      if (i !== currentPage) {
+        btn.style.background = "#fff";
+        btn.style.color = "#000";
+      }
+    };
 
     btn.onclick = () => {
       currentPage = i;
@@ -256,6 +284,7 @@ function renderPagination() {
     paginationContainer.appendChild(btn);
   }
 }
+
 
 /* =======================
    CATEGORY DROPDOWN
@@ -294,3 +323,57 @@ document.querySelectorAll(".dropdown-item").forEach(item => {
 
   // INITIAL RENDER
 renderProducts(productsData);
+// slider elements
+const minRange = document.getElementById("minRange");
+const maxRange = document.getElementById("maxRange");
+const minValue = document.getElementById("minValue");
+const maxValue = document.getElementById("maxValue");
+const resetFilterBtn = document.getElementById("resetFilter");
+
+// 🔥 dynamically set max price based on products
+const highestPrice = Math.max(...productsData.map(p => p.price));
+minRange.max = highestPrice;
+maxRange.max = highestPrice;
+maxRange.value = highestPrice;
+maxValue.textContent = highestPrice;
+
+// update UI text
+function updateSliderValues() {
+
+  let min = parseFloat(minRange.value);
+  let max = parseFloat(maxRange.value);
+
+  // prevent overlap
+  if (min > max) {
+    [min, max] = [max, min];
+  }
+
+  minValue.textContent = min;
+  maxValue.textContent = max;
+
+  filteredProducts = productsData.filter(product =>
+    product.price >= min && product.price <= max
+  );
+
+  currentPage = 1;
+  renderProducts(filteredProducts);
+}
+
+// event listeners
+minRange.addEventListener("input", updateSliderValues);
+maxRange.addEventListener("input", updateSliderValues);
+
+// reset
+resetFilterBtn.addEventListener("click", () => {
+
+  minRange.value = 0;
+  maxRange.value = highestPrice;
+
+  minValue.textContent = 0;
+  maxValue.textContent = highestPrice;
+
+  filteredProducts = [...productsData];
+  currentPage = 1;
+
+  renderProducts(filteredProducts);
+});

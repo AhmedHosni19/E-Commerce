@@ -71,10 +71,11 @@
   <div class="d-flex align-items-center gap-3">
 
     <!-- CART -->
- <div class="icon-btn" id="userMenuBtn" onclick="window.location.href='Cart.html'">
+ <div class="icon-btn" id="userMenuBtn" href=''>
+  <a href='Cart.html'>
         <svg viewBox="0 0 576 512">
           <path d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"/>
-        </svg>
+        </svg></a>
       </div>
 
       <!-- User Dropdown -->
@@ -98,11 +99,46 @@
 </div>
     </div>
   </nav>
+<div class="container-fluid mt-4 px-4">
+  <div class="row">
 
+    <!-- Sidebar -->
+ <div class="col-lg-3 col-md-4">
+        <div class="card p-3 sticky-sidebar">
+        <h5 class="mb-3">Filter by Price</h5>
 
-<div id="products" 
-     class="container d-flex align-items-center justify-content-center flex-wrap gap-3">
+        <div class="mb-3">
+          <label>Min Price: $<span id="minValue">0</span></label>
+          <input type="range" id="minRange" class="form-range">
+        </div>
+
+        <div class="mb-3">
+          <label>Max Price: $<span id="maxValue">1000</span></label>
+          <input type="range" id="maxRange" class="form-range">
+        </div>
+
+        <button id="resetFilter" class="btn btn-outline-secondary w-100">
+          Reset
+        </button>
+      </div>
+    </div>
+
+    <!-- Products -->
+    <div class="col-md-9">
+      <div id="products" class="row g-3"></div>
+    </div>
+
+  </div>
 </div>
+
+
+
+  </div>
+</div>
+
+
+
+
   <script src="ServerSide/data/products-data.js"></script>
   <script src="Home.js"></script>
   <script src="./ServerSide/ProductsManagment.js"></script>

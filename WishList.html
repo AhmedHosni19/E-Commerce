@@ -8,6 +8,8 @@
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"></script>
         <link rel="stylesheet" href="Home.css">
+                <link rel="stylesheet" href="wishList.css">
+
 
     </head>
 
@@ -84,77 +86,68 @@
             </div>
         </nav>
 
-        <div class="container mt-5">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="Home.html" class="text-decoration-none text-dark">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="#"
-                            class="text-decoration-none text-dark">WishList</a></li>
-                </ol>
-            </nav>
-        </div>
+        
 
 
-        <div class="container d-flex align-items-center justify-content-center flex-wrap gap-3">
-            <div class="row">
-                <!-- Main content area -->
-                <main class="col-md-8">
-                    <div class="d-flex align-items-center mb-2  fw-bold">
-                        <div>
+        <div class="container mt-4 wishlist-container">
 
-                            <h2 class="me-2">My WishList</h2>
-                        </div>
+    <!-- Page Title -->
+    <div class="wishlist-header text-center mb-4">
+        <h2 class="fw-bold">My Wishlist</h2>
+        <p class="text-muted">Products you saved for later</p>
+    </div>
 
+    <div class="card wishlist-card">
+
+        <!-- Table Header -->
+       <div class="wishlist-table-header d-none d-md-flex align-items-center">
+    <div class="col-md-4 text-start">Product</div>
+    <div class="col-md-4 text-center">Price</div>
+    <div class="col-md-4 text-end">Action</div>
+</div>
+
+
+        <!-- Items Container (JS FILLS THIS) -->
+        <div class="wishlist-body overflow-auto" id="full-div" style="display:none;">
+
+            <!-- SINGLE ITEM TEMPLATE (JS duplicates this structure) -->
+            <div class="wishlist-item row align-items-center">
+
+                <div class="col-md-4 d-flex align-items-center gap-3">
+                    <div id="item-img">
+                        <img src="" width="80" height="80">
                     </div>
-                    <div class="card " style="width: 45rem;">
-
-                        <div class="card">
-                            <div class="card-header p-2">
-                                <div class="row g-0 text-center ">
-                                    <div class="col-2 ">PRODUCT</div>
-                                    <div class="col-2 offset-6">PRICE</div>
-                                </div>
-                            </div>
-                            <br>
-
-                            <div style="height: 375;display: none; " class="overflow-auto " id="full-div">
-                                <div class="row g-0  ms-3">
-                                    <div class=" col-2  d-inline-flex align-items-center" id="item-img"><img src=""
-                                            height="70" width="70"></div>
-                                    <div class="col-2 "><strong id="item-title"></strong>
-                                        <p class="text-primary" id="item-subTitle"></p>
-                                    </div>
-
-
-                                    <div class="col-2 fw-bold d-inline-flex align-items-center gap-2 offset-4"
-                                        id="item-price"></div>
-
-                                    <div id="deleteProduct"
-                                        class="col-1 d-inline-flex align-items-center gap-2 text-danger "
-                                        style="cursor: pointer;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="20"
-                                            height="20" fill="currentColor">
-                                            <path
-                                                d="M232.7 69.9C237.1 56.8 249.3 48 263.1 48L377 48C390.8 48 403 56.8 407.4 69.9L416 96L512 96C529.7 96 544 110.3 544 128C544 145.7 529.7 160 512 160L128 160C110.3 160 96 145.7 96 128C96 110.3 110.3 96 128 96L224 96L232.7 69.9zM128 208L512 208L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 208zM216 272C202.7 272 192 282.7 192 296L192 488C192 501.3 202.7 512 216 512C229.3 512 240 501.3 240 488L240 296C240 282.7 229.3 272 216 272zM320 272C306.7 272 296 282.7 296 296L296 488C296 501.3 306.7 512 320 512C333.3 512 344 501.3 344 488L344 296C344 282.7 333.3 272 320 272zM424 272C410.7 272 400 282.7 400 296L400 488C400 501.3 410.7 512 424 512C437.3 512 448 501.3 448 488L448 296C448 282.7 437.3 272 424 272z" />
-                                        </svg>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="height: 375;display: none; "
-                                class="d-flex justify-content-center align-items-center text-center fw-bold fs-4 "
-                                id="empty-div">
-                                The List is Empty
-                            </div>
-
-                        </div>
-
+                    <div>
+                        <strong id="item-title"></strong>
+                        <p class="text-muted mb-0" id="item-subTitle"></p>
                     </div>
-                </main>
+                </div>
 
+                <div class="col-md-4 text-center fw-bold" id="item-price"></div>
+
+                <div class="col-md-4 text-end">
+                    <button id="deleteProduct" class="btn btn-sm btn-outline-danger">
+                        Remove
+                    </button>
+                </div>
 
             </div>
+
         </div>
+
+        <!-- Empty State -->
+        <div class="wishlist-empty d-flex flex-column justify-content-center align-items-center text-center py-5"
+     id="empty-div"
+     style="display:none;">
+     
+    <h4 class="fw-bold">Your Wishlist is Empty</h4>
+
+</div>
+
+
+    </div>
+</div>
+
 
         <br><br>
         <script src="WishList.js"></script>

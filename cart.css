@@ -1,0 +1,263 @@
+/* ===============================
+   GLOBAL
+================================ */
+body {
+    background: linear-gradient(135deg, #dfe2e6, #f8f9fa);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Fade In Page */
+.container {
+    animation: fadeInPage 0.8s ease-in-out;
+}
+
+@keyframes fadeInPage {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===============================
+   CARD DESIGN
+================================ */
+
+.card {
+    border: none;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    background: white;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
+
+/* Header Style */
+.card-header {
+    background: linear-gradient(90deg, #0d6efd, #4dabf7);
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* ===============================
+   CART ITEMS
+================================ */
+
+#full-div .row {
+    padding: 15px 10px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    animation: fadeItem 0.4s ease forwards;
+}
+
+@keyframes fadeItem {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+#full-div .row:hover {
+    background-color: #f8f9fa;
+    transform: scale(1.02);
+}
+
+/* Product Image */
+#item-img img {
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+#item-img img:hover {
+    transform: scale(1.1) rotate(2deg);
+}
+
+/* ===============================
+   BUTTONS
+================================ */
+
+.btn {
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Plus/Minus Buttons */
+#btn-minus,
+#btn-plus {
+    transition: all 0.2s ease;
+}
+
+#btn-minus:hover,
+#btn-plus:hover {
+    background-color: #0d6efd;
+    color: white;
+}
+
+/* Submit Order Button */
+#submit-order {
+    border-radius: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+#submit-order:hover {
+    background-color: #0b5ed7;
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(13,110,253,0.4);
+}
+
+/* ===============================
+   CLEAR CART & DELETE ICON
+================================ */
+
+#clearCart {
+    transition: all 0.3s ease;
+}
+
+#clearCart:hover {
+    transform: scale(1.1);
+    color: #dc3545 !important;
+}
+
+#deleteProduct {
+    transition: all 0.3s ease;
+}
+
+#deleteProduct:hover {
+    transform: scale(1.2) rotate(-8deg);
+    color: #dc3545;
+}
+
+/* ===============================
+   ORDER SUMMARY ANIMATION
+================================ */
+
+.sidebar-content .card {
+    animation: slideInRight 0.7s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ===============================
+   EMPTY CART STYLE
+================================ */
+
+#empty-div {
+    animation: fadeInEmpty 0.6s ease;
+    color: #6c757d;
+}
+
+@keyframes fadeInEmpty {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ===============================
+   DISCOUNT INPUT
+================================ */
+
+#discount-code {
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+#discount-code:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 10px rgba(13,110,253,0.3);
+}
+
+/* ===============================
+   SCROLLBAR CUSTOM
+================================ */
+
+#full-div::-webkit-scrollbar {
+    width: 6px;
+}
+
+#full-div::-webkit-scrollbar-thumb {
+    background: #0d6efd;
+    border-radius: 10px;
+}
+
+#full-div::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+/* ===============================
+   FIX SIDEBAR TYPOGRAPHY
+================================ */
+
+/* Make only the first title row gradient */
+.sidebar-content .card-header {
+    background: white;
+    color: #212529;
+}
+
+/* Order Summary Title */
+.sidebar-content .card-header > .fw-bold:first-child {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0d6efd;
+}
+
+/* Labels (SubTotal, Shipping, etc.) */
+.sidebar-content .text-primary {
+    color: #6c757d !important;
+    font-weight: 500;
+}
+
+/* Prices */
+.sidebar-content #subTotal,
+.sidebar-content #EstimatedShipping,
+.sidebar-content #EstimatedTax {
+    color: #212529 !important;
+    font-size: 1rem;
+}
+
+/* Total row */
+.sidebar-content .fw-bold.text-primary {
+    font-size: 1.2rem;
+    color: #0d6efd !important;
+}
+
+/* Discount label */
+.sidebar-content span.text-primary {
+    font-weight: 600;
+}
+
+/* Secure payment text */
+.sidebar-content span.text-primary-emphasis {
+    color: #495057 !important;
+    font-size: 0.9rem;
+}

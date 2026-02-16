@@ -175,6 +175,7 @@ function orderSummery() {
  const order = {
     orderId,
     email: currentUser.email,
+    userId: currentUser.id,   // ✅ ADD THIS
     totalPrice,
     status: "Pending",
     date: new Date().toLocaleString(),
@@ -596,6 +597,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const userEmail = currentUser.email.toLowerCase();
+
   const wishlistKey = "wishlist_" + userEmail; // 🔥 unique per user
 
   const wishlistContainer = document.getElementById("full-div");

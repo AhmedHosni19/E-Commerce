@@ -11,6 +11,8 @@
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
          <link rel="stylesheet" href="Home.css">
+                  <link rel="stylesheet" href="History.css">
+
 
 </head>
 
@@ -91,88 +93,66 @@
 
 
 
-        <div class="container mt-5 d-flex  justify-content-center flex-wrap gap-3">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page"><a class="text-decoration-none text-dark">
-                            <h2><strong>Orders History</strong></h2>
-                        </a></li>
-                </ol>
-            </nav>
+        <div class="container mt-4 history-container">
+
+    <!-- Page Title -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">Orders History</h2>
+        <p class="text-muted">Track and manage your orders</p>
+    </div>
+
+    <div class="card history-card">
+
+        <!-- Table Header -->
+        <div class="history-header d-none d-md-flex align-items-center ">
+            <div class="col-md-4 text-start">Order ID</div>
+            <div class="col-md-4 text-center">Total Price</div>
+            <div class="col-md-4 text-center">Status</div>
         </div>
 
+        <!-- Orders Container -->
+        <div class="history-body overflow-auto" id="orders-div" style="display:none;">
 
-        <div class="container d-flex align-items-center justify-content-center flex-wrap gap-3">
-            <div class="row">
-                <!-- Main content area -->
-                <main class="col-md-8">
-                    <div class="d-flex justify-content-between mb-2 fw-bold">
+            <!-- SINGLE ORDER TEMPLATE (JS duplicates this structure) -->
+            <div class="history-item row align-items-center">
 
+                <!-- ORDER ID (LEFT) -->
+                <div class="col-md-4">
+                    <small class="fw-bold" id="orderId"></small>
+                </div>
 
-                    </div>
-                    <div class="card " style="width: 45rem;">
-                        <div style="height: 375;display: none; " class="overflow-auto ">
+                <!-- TOTAL PRICE (CENTER) -->
+                <div class="col-md-4 d-flex justify-content-center">
+                    <small class="fw-semibold text-primary" id="totalPrice"></small>
+                </div>
 
-                        </div>
-                        <div class="card">
-                            <div class="card-header p-2">
-                                <div class="row g-0 text-center ">
-                                    <div class="col-4">ORDER ID</div>
-                                    <div class="col-4">TOTAL PRICE</div>
-                                    <div class="col-4">STATUS</div>
-                                </div>
-                            </div>
-                            <br>
-                            <div style="height: 375px ; display: none;" class="overflow-auto " id="orders-div">
-                                <div class="row g-0  ms-3">
-                                    <div class="col-2 d-flex align-items-center fw-bold "><small id="orderId"></small>
-                                    </div>
-                                   
-                                    <div class="col-2 d-flex align-items-center "><small id="totalPrice"></small>
-                                    </div>
-                                    <div class="col-2 d-flex align-items-center  "><small id="status" ></small>
-                                    </div>
-                                    <div class="col-2 d-flex align-items-center justify-content-center offset-1"
-                                        id="action">
-                                        <button type="button" class="btn btn-primary me-2">Confirm</button>
-                                        <button type="button" class="btn btn-outline-danger">Reject</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="height: 375;display: none; " class="overflow-auto " id="full-div">
-                                <div class="row g-0  ms-3">
-                                    <div class=" col-2  d-inline-flex align-items-center" id="item-img"><img src=""
-                                            height="70" width="70"></div>
-                                    <div class="col-2 "><strong id="item-title"></strong>
-                                        <p class="text-primary" id="item-subTitle"></p>
-                                    </div>
-                                    <div class="col-2  d-inline-flex align-items-center gap-2">
-                                        <div class="input-group mb-3 " style="max-width: 150px;  ">
-                                            <button class="btn btn-outline-secondary" type="button"
-                                                id="btn-minus">-</button>
-                                            <input type="text" class="form-control text-center" value="1" id="qty">
-                                            <button class="btn btn-outline-secondary" type="button"
-                                                id="btn-plus">+</button>
-                                        </div>
+                <!-- STATUS (CENTER) -->
+                <div class="col-md-4 d-flex justify-content-center">
+                    <small id="status"></small>
+                </div>
 
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div style="height: 375px; display: none; "
-                                class="d-flex justify-content-center align-items-center text-center fw-bold fs-4 "
-                                id="empty-div">
-                                There are no Orders yet!
-                            </div>
-
-                        </div>
-
-                    </div>
-                </main>
-
+                <!-- ACTION (RIGHT) -->
+                <div class="col-md-2 d-flex justify-content-end gap-2" id="action">
+                    <button type="button" class="btn btn-sm btn-primary">Confirm</button>
+                    <button type="button" class="btn btn-sm btn-outline-danger">Reject</button>
+                </div>
 
             </div>
+
         </div>
+
+        <!-- Empty State -->
+        <div class="history-empty d-flex flex-column justify-content-center align-items-center text-center py-5"
+             id="empty-div"
+             style="display:none;">
+             
+            <h4 class="fw-bold">There are no orders yet!</h4>
+            <p class="text-muted">Your order history will appear here.</p>
+
+        </div>
+
+    </div>
+</div>
 
         <br><br>
         <script src="Cart.js" defer></script>

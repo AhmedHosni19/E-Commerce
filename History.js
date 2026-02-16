@@ -32,12 +32,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
         userOrders.forEach((order) => {
             const row = document.createElement("div");
-            row.className = "row g-0 ms-3 text-center mb-2";
-            row.innerHTML = `
-                <div class="col-4 d-flex align-items-center justify-content-center fw-bold">#ORD-${order.orderId}</div>
-                <div class="col-4 d-flex align-items-center justify-content-center fw-bold ">$${order.totalPrice.toFixed(2)}</div>
-                <div class="col-4 d-flex align-items-center justify-content-center fw-bold">${order.status || "Pending"}</div>
-            `;
+row.className = "history-item row align-items-center py-3 border-bottom";
+
+const statusClass =
+    order.status === "Confirmed"
+        ? "status-confirmed"
+        : order.status === "Rejected"
+        ? "status-rejected"
+        : "status-pending";
+
+row.innerHTML = `
+    <div class="col-4">
+        <div class="fw-bold">#ORD-${order.orderId}</div>
+        <small class="text-muted">Order ID</small>
+    </div>
+
+    <div class="col-4 text-center">
+        <div class="fw-bold text-primary fs-5">
+            $${order.totalPrice.toFixed(2)}
+        </div>
+        <small class="text-muted">Total Price</small>
+    </div>
+
+    <div class="col-4 text-center">
+        <span class="status-badge ${statusClass}">
+            ${order.status || "Pending"}
+        </span>
+    </div>
+`;
+
+
             ordersDiv.appendChild(row);
         });
     }

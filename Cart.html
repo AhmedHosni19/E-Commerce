@@ -98,152 +98,120 @@
         </nav>
     </div>
 
+<div class="container cart-wrapper">
 
-    <div class="container">
-        <div class="row">
-            <!-- Main content area -->
-            <main class="col-md-8">
-                <div class="d-flex justify-content-between mb-2 fw-bold">
-                    <span>
-                        <h2>Your Shipping Cart</h2>
-                    </span>
-                    <span id="clearCart" class="d-inline-flex align-items-center gap-2 text-danger"
-                        style="cursor: pointer;">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="20" height="20"
-                            fill="currentColor">
-                            <path
-                                d="M232.7 69.9C237.1 56.8 249.3 48 263.1 48L377 48C390.8 48 403 56.8 407.4 69.9L416 96L512 96C529.7 96 544 110.3 544 128C544 145.7 529.7 160 512 160L128 160C110.3 160 96 145.7 96 128C96 110.3 110.3 96 128 96L224 96L232.7 69.9zM128 208L512 208L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 208zM216 272C202.7 272 192 282.7 192 296L192 488C192 501.3 202.7 512 216 512C229.3 512 240 501.3 240 488L240 296C240 282.7 229.3 272 216 272zM320 272C306.7 272 296 282.7 296 296L296 488C296 501.3 306.7 512 320 512C333.3 512 344 501.3 344 488L344 296C344 282.7 333.3 272 320 272zM424 272C410.7 272 400 282.7 400 296L400 488C400 501.3 410.7 512 424 512C437.3 512 448 501.3 448 488L448 296C448 282.7 437.3 272 424 272z" />
-                        </svg>
-                        Clear cart
-
-                    </span>
-
-                </div>
-                <div class="card " style="width: 45rem;">
-
-                    <div class="card">
-                        <div class="card-header p-2">
-                            <div class="row g-0 text-center ">
-                                <div class="col-2 ">PRODUCT</div>
-                                <div class="col-2 offset-2">QUANTATITY</div>
-                                <div class="col-2 offset-1">PRICE</div>
-                                <div class="col-2 ">SUBTOTAL</div>
-                            </div>
-                        </div>
-                        <br>
-
-                        <div style="height: 375px;display: none; " class="overflow-auto " id="full-div">
-                            <div class="row g-0  ms-3">
-                                <div class=" col-2  d-inline-flex align-items-center" id="item-img"><img src=""
-                                        height="70" width="70"></div>
-                                <div class="col-2 "><strong id="item-title"></strong>
-                                    <p class="text-primary" id="item-subTitle"></p>
-                                </div>
-                                <div class="col-2  d-inline-flex align-items-center gap-2">
-                                    <div class="input-group mb-3 " style="max-width: 150px;  ">
-                                        <button class="btn btn-outline-secondary" type="button"
-                                            id="btn-minus">-</button>
-                                        <input type="text" class="form-control text-center" value="1" id="qty">
-                                        <button class="btn btn-outline-secondary" type="button" id="btn-plus">+</button>
-                                    </div>
-
-                                </div>
-
-                                <div class="col-2 fw-bold d-inline-flex align-items-center gap-2 offset-1"
-                                    id="item-price"></div>
-                                <div class="col-2 text-primary fw-bold d-inline-flex align-items-center gap-2"
-                                    id="subTotalPrice"></div>
-                                <div id="deleteProduct" class="col-1 d-inline-flex align-items-center gap-2 text-danger"
-                                    style="cursor: pointer;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="20" height="20"
-                                        fill="currentColor">
-                                        <path
-                                            d="M232.7 69.9C237.1 56.8 249.3 48 263.1 48L377 48C390.8 48 403 56.8 407.4 69.9L416 96L512 96C529.7 96 544 110.3 544 128C544 145.7 529.7 160 512 160L128 160C110.3 160 96 145.7 96 128C96 110.3 110.3 96 128 96L224 96L232.7 69.9zM128 208L512 208L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 208zM216 272C202.7 272 192 282.7 192 296L192 488C192 501.3 202.7 512 216 512C229.3 512 240 501.3 240 488L240 296C240 282.7 229.3 272 216 272zM320 272C306.7 272 296 282.7 296 296L296 488C296 501.3 306.7 512 320 512C333.3 512 344 501.3 344 488L344 296C344 282.7 333.3 272 320 272zM424 272C410.7 272 400 282.7 400 296L400 488C400 501.3 410.7 512 424 512C437.3 512 448 501.3 448 488L448 296C448 282.7 437.3 272 424 272z" />
-                                    </svg>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div style="height: 375px; display: none;"
-                            class="d-flex justify-content-center align-items-center text-center fw-bold fs-4 "
-                            id="empty-div">
-                            The Cart is Empty
-                        </div>
-
-                    </div>
-
-                </div>
-            </main>
-
-            <!-- Aside/Sidebar area -->
-            <aside class="sidebar-content" style="max-width: 300px;">
-                <div class="card " style="width: 24rem;">
-
-                    <div class="card-header">
-                        <div class=" fw-bold">
-                            Order Summary
-                        </div><br>
-                        <div class="d-flex justify-content-between mb-2">
-                            <span class="text-primary ">SubTotal</span>
-                            <span id="subTotal" class="fw-bold">$0.00</span>
-                        </div>
-                        <div class="d-flex justify-content-between mb-2">
-                            <span class="text-primary ">Estimated Shipping</span>
-                            <span id="EstimatedShipping" class="fw-bold">$0.00</span>
-                        </div>
-                        <div class="d-flex justify-content-between mb-2">
-                            <span class="text-primary ">Estimated Tax</span>
-                            <span id="EstimatedTax" class="fw-bold">$0.00</span>
-                        </div>
-                        <hr>
-                        <div class="d-flex justify-content-between mb-2 fw-bold">
-                            <span>Total</span>
-                            <span id="EstimatedTax" class="fw-bold text-primary">$0.00</span>
-                        </div>
-
-                        <a href="#" class="btn btn-primary w-100 p-2 mt-3" id="submit-order">
-                            Submit Order
-                        </a><br><br>
-                        <span class="text-primary">Discount Code</span>
-
-                        <form class="d-flex" role="apply-discount">
-                            <input class="form-control me-2" type="text" id="discount-code" placeholder="Code"
-                                aria-label="discount" />
-                            <button class="btn btn-outline-success" type="submit">Apply</button>
-                        </form>
-
-                        <span class="d-flex justify-content-center align-items-center py-3 text-primary-emphasis gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="20"
-                                hight="20"><!--!Font Awesome Pro v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2026 Fonticons, Inc.-->
-                                <path
-                                    d="M256 160L256 224L384 224L384 160C384 124.7 355.3 96 320 96C284.7 96 256 124.7 256 160zM192 224L192 160C192 89.3 249.3 32 320 32C390.7 32 448 89.3 448 160L448 224C483.3 224 512 252.7 512 288L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 288C128 252.7 156.7 224 192 224z" />
-                            </svg>
-                            Secure Payment</span>
-                        <span class="d-flex justify-content-center align-items-center py-3 text-primary-emphasis">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="25"
-                                hight="25"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
-                                <path
-                                    d="M64 192L64 224L576 224L576 192C576 156.7 547.3 128 512 128L128 128C92.7 128 64 156.7 64 192zM64 272L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 272L64 272zM128 424C128 410.7 138.7 400 152 400L200 400C213.3 400 224 410.7 224 424C224 437.3 213.3 448 200 448L152 448C138.7 448 128 437.3 128 424zM272 424C272 410.7 282.7 400 296 400L360 400C373.3 400 384 410.7 384 424C384 437.3 373.3 448 360 448L296 448C282.7 448 272 437.3 272 424z" />
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="25"
-                                hight="25"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
-                                <path
-                                    d="M239.9 359.9C236.4 379.1 222.5 468.6 218.4 493.9C218.1 495.7 217.4 496.4 215.4 496.4L140.8 496.4C133.2 496.4 127.7 489.8 128.7 482.5L187.3 110.6C188.8 101 197.4 93.7 207.3 93.7C359.6 93.7 372.4 90 411.3 105.1C471.4 128.4 476.9 184.6 455.3 245.4C433.8 308 382.8 334.9 315.2 335.7C271.8 336.4 245.7 328.7 239.9 359.9zM485.6 216C483.8 214.7 483.1 214.2 482.6 217.3C480.6 228.7 477.5 239.8 473.8 250.9C433.9 364.7 323.3 354.8 269.3 354.8C263.2 354.8 259.2 358.1 258.4 364.2C235.8 504.6 231.3 533.9 231.3 533.9C230.3 541 234.8 546.8 241.9 546.8L305.4 546.8C314 546.8 321.1 540.5 322.8 531.9C323.5 526.5 321.7 538 337.2 440.6C341.8 418.6 351.5 420.9 366.5 420.9C437.5 420.9 492.9 392.1 509.4 308.6C515.9 273.8 514 237.2 485.6 216z" />
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="25"
-                                hight="25"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
-                                <path
-                                    d="M128 96C92.7 96 64 124.7 64 160L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 256C576 220.7 547.3 192 512 192L136 192C122.7 192 112 181.3 112 168C112 154.7 122.7 144 136 144L520 144C533.3 144 544 133.3 544 120C544 106.7 533.3 96 520 96L128 96zM480 320C497.7 320 512 334.3 512 352C512 369.7 497.7 384 480 384C462.3 384 448 369.7 448 352C448 334.3 462.3 320 480 320z" />
-                            </svg>
-                        </span>
-
-
-                    </div>
-                </div>
-            </aside>
-        </div>
+    <!-- Breadcrumb -->
+    <div class="mb-4">
+        <h3 class="fw-bold">Shopping Cart</h3>
+        <p class="text-muted">Review your items before checkout</p>
     </div>
 
+    <div class="row g-4">
+
+        <!-- ================= CART ITEMS ================= -->
+        <div class="col-lg-8">
+
+            <div class="cart-card">
+
+                <div class="cart-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Your Cart</h5>
+                    <span id="clearCart" class="clear-btn">
+                        Clear Cart
+                    </span>
+                </div>
+
+                <!-- Column Labels -->
+                <div class="cart-labels row text-muted fw-semibold">
+                    <div class="col-md-4">Product</div>
+                    <div class="col-md-3 text-center">Quantity</div>
+                    <div class="col-md-2 text-center">Price</div>
+                    <div class="col-md-2 text-center">Subtotal</div>
+                    <div class="col-md-1"></div>
+                </div>
+
+                <!-- Cart Items -->
+                <div id="full-div" class="cart-items overflow-auto" style="display:none; height:400px;">
+                    <!-- JS template row still used -->
+                    <div class="row cart-item align-items-center">
+                        <div class="col-md-4 d-flex align-items-center gap-3" id="item-img">
+                            <img src="" width="70" height="70">
+                            <div>
+                                <div id="item-title" class="fw-semibold"></div>
+                                <small id="item-subTitle" class="text-muted"></small>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 text-center">
+                            <div class="input-group quantity-box">
+                                <button class="btn btn-outline-secondary" id="btn-minus">-</button>
+                                <input type="text" id="qty" class="form-control text-center" value="1">
+                                <button class="btn btn-outline-secondary" id="btn-plus">+</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 text-center fw-semibold" id="item-price"></div>
+                        <div class="col-md-2 text-center text-primary fw-bold" id="subTotalPrice"></div>
+
+                        <div class="col-md-1 text-center text-danger" id="deleteProduct">
+                            ✕
+                        </div>
+                    </div>
+                </div>
+
+                <div id="empty-div" class="empty-cart d-flex " style="display:none;">
+                    <h5>Your cart is empty </h5>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ================= ORDER SUMMARY ================= -->
+        <div class="col-lg-4">
+
+            <div class="summary-card">
+
+                <h5 class="fw-bold mb-4">Order Summary</h5>
+
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subTotal">$0.00</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span id="EstimatedShipping">$0.00</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Tax</span>
+                    <span id="EstimatedTax">$0.00</span>
+                </div>
+
+                <hr>
+
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span id="EstimatedTax">$0.00</span>
+                </div>
+
+                <a href="#" id="submit-order" class="btn btn-dark w-100 mt-4">
+                    Checkout
+                </a>
+
+                <div class="discount-box mt-4">
+                    <label class="fw-semibold">Discount Code</label>
+                    <form role="apply-discount" class="d-flex mt-2">
+                        <input type="text" id="discount-code" class="form-control me-2" placeholder="Enter code">
+                        <button class="btn btn-outline-dark">Apply</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
     <br><br>
     <script src="Cart.js"></script>
       <script src="ServerSide/data/products-data.js"></script>

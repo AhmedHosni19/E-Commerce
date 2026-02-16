@@ -1,263 +1,135 @@
-/* ===============================
-   GLOBAL
-================================ */
 body {
-    background: linear-gradient(135deg, #dfe2e6, #f8f9fa);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f3f4f6, #e9ecef);
+    font-family: 'Inter', sans-serif;
 }
 
-/* Fade In Page */
-.container {
-    animation: fadeInPage 0.8s ease-in-out;
+/* Layout spacing */
+.cart-wrapper {
+    padding-bottom: 60px;
 }
 
-@keyframes fadeInPage {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ===============================
-   CARD DESIGN
-================================ */
-
-.card {
-    border: none;
-    border-radius: 18px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    transition: all 0.3s ease;
-    overflow: hidden;
+/* =======================
+   CART CARD
+======================= */
+.cart-card {
     background: white;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    animation: fadeIn 0.5s ease;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+.cart-header {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
 }
 
-/* Header Style */
-.card-header {
-    background: linear-gradient(90deg, #0d6efd, #4dabf7);
-    color: white;
-    font-weight: 600;
-    letter-spacing: 0.5px;
+.clear-btn {
+    cursor: pointer;
+    font-size: 14px;
+    color: #dc3545;
+    transition: 0.2s;
 }
 
-/* ===============================
-   CART ITEMS
-================================ */
-
-#full-div .row {
-    padding: 15px 10px;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    animation: fadeItem 0.4s ease forwards;
+.clear-btn:hover {
+    transform: scale(1.1);
 }
 
-@keyframes fadeItem {
-    from {
-        opacity: 0;
-        transform: translateX(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+/* Labels */
+.cart-labels {
+    padding: 15px 0;
+    font-size: 14px;
 }
 
-#full-div .row:hover {
-    background-color: #f8f9fa;
-    transform: scale(1.02);
+/* Cart Item */
+.cart-item {
+    padding: 18px 0;
+    border-bottom: 1px solid #f1f1f1;
+    transition: 0.2s ease;
+}
+
+.cart-item:hover {
+    background: #f9fafb;
 }
 
 /* Product Image */
 #item-img img {
     border-radius: 12px;
-    transition: transform 0.3s ease;
+    object-fit: cover;
+    transition: 0.3s;
 }
 
 #item-img img:hover {
-    transform: scale(1.1) rotate(2deg);
+    transform: scale(1.08);
 }
 
-/* ===============================
-   BUTTONS
-================================ */
-
-.btn {
-    border-radius: 12px;
-    transition: all 0.3s ease;
+/* Quantity */
+.quantity-box {
+    max-width: 130px;
+    margin: auto;
 }
 
-.btn:hover {
-    transform: translateY(-2px);
-}
-
-/* Plus/Minus Buttons */
-#btn-minus,
-#btn-plus {
-    transition: all 0.2s ease;
-}
-
-#btn-minus:hover,
-#btn-plus:hover {
-    background-color: #0d6efd;
+.quantity-box button:hover {
+    background: black;
     color: white;
 }
 
-/* Submit Order Button */
-#submit-order {
-    border-radius: 14px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-#submit-order:hover {
-    background-color: #0b5ed7;
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(13,110,253,0.4);
-}
-
-/* ===============================
-   CLEAR CART & DELETE ICON
-================================ */
-
-#clearCart {
-    transition: all 0.3s ease;
-}
-
-#clearCart:hover {
-    transform: scale(1.1);
-    color: #dc3545 !important;
-}
-
+/* Delete */
 #deleteProduct {
-    transition: all 0.3s ease;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
 }
 
 #deleteProduct:hover {
-    transform: scale(1.2) rotate(-8deg);
-    color: #dc3545;
+    transform: scale(1.2);
 }
 
-/* ===============================
-   ORDER SUMMARY ANIMATION
-================================ */
-
-.sidebar-content .card {
-    animation: slideInRight 0.7s ease;
+/* =======================
+   SUMMARY CARD
+======================= */
+.summary-card {
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    animation: slideIn 0.6s ease;
 }
 
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 15px;
 }
 
-/* ===============================
-   EMPTY CART STYLE
-================================ */
+.summary-row.total {
+    font-size: 18px;
+    font-weight: bold;
+}
 
-#empty-div {
-    animation: fadeInEmpty 0.6s ease;
+.btn-dark {
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.btn-dark:hover {
+    transform: translateY(-3px);
+}
+
+/* Empty */
+.empty-cart {
+    padding: 60px 0;
     color: #6c757d;
 }
 
-@keyframes fadeInEmpty {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+/* Animations */
+@keyframes fadeIn {
+    from {opacity:0; transform: translateY(15px);}
+    to {opacity:1; transform: translateY(0);}
 }
 
-/* ===============================
-   DISCOUNT INPUT
-================================ */
-
-#discount-code {
-    border-radius: 12px;
-    transition: all 0.3s ease;
-}
-
-#discount-code:focus {
-    border-color: #0d6efd;
-    box-shadow: 0 0 10px rgba(13,110,253,0.3);
-}
-
-/* ===============================
-   SCROLLBAR CUSTOM
-================================ */
-
-#full-div::-webkit-scrollbar {
-    width: 6px;
-}
-
-#full-div::-webkit-scrollbar-thumb {
-    background: #0d6efd;
-    border-radius: 10px;
-}
-
-#full-div::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-/* ===============================
-   FIX SIDEBAR TYPOGRAPHY
-================================ */
-
-/* Make only the first title row gradient */
-.sidebar-content .card-header {
-    background: white;
-    color: #212529;
-}
-
-/* Order Summary Title */
-.sidebar-content .card-header > .fw-bold:first-child {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #0d6efd;
-}
-
-/* Labels (SubTotal, Shipping, etc.) */
-.sidebar-content .text-primary {
-    color: #6c757d !important;
-    font-weight: 500;
-}
-
-/* Prices */
-.sidebar-content #subTotal,
-.sidebar-content #EstimatedShipping,
-.sidebar-content #EstimatedTax {
-    color: #212529 !important;
-    font-size: 1rem;
-}
-
-/* Total row */
-.sidebar-content .fw-bold.text-primary {
-    font-size: 1.2rem;
-    color: #0d6efd !important;
-}
-
-/* Discount label */
-.sidebar-content span.text-primary {
-    font-weight: 600;
-}
-
-/* Secure payment text */
-.sidebar-content span.text-primary-emphasis {
-    color: #495057 !important;
-    font-size: 0.9rem;
+@keyframes slideIn {
+    from {opacity:0; transform: translateX(30px);}
+    to {opacity:1; transform: translateX(0);}
 }

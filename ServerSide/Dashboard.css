@@ -149,3 +149,529 @@ h2 {
     font-size: 1.2rem;
     color: #6c757d;
 }
+/* ===========================
+   NAVBAR
+=========================== */
+
+.navbar-custom{
+    background:#fff;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    padding:15px 40px;
+}
+
+.nav-container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+/* LOGO */
+.logo{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:bold;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.logo img{
+    width:30px;
+}
+
+/* LEFT & RIGHT SECTIONS */
+.nav-left,
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+/* NAV LINKS */
+.nav-link{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.nav-link:hover{
+    color:#2aa3c6;
+}
+
+.nav-link img{
+    width:20px;
+}
+
+/* ICON BUTTON */
+.icon-btn{
+    width:45px;
+    height:45px;
+    background:#f1f1f1;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.icon-btn svg{
+    width:20px;
+    fill:#333;
+    transition:.3s;
+}
+
+.icon-btn:hover{
+    background:#2aa3c6;
+    transform:translateY(-4px);
+}
+
+.icon-btn:hover svg{
+    fill:#fff;
+}
+
+/* DROPDOWN (USER MENU) */
+.dropdown-user{
+    position:relative;
+}
+
+.dropdown-content{
+    display:none;
+    position:absolute;
+    top:45px;
+    right:0;
+    background:#fff;
+    min-width:140px;
+    border-radius:8px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    padding:8px 0;
+    z-index:1000;
+}
+
+.dropdown-content button{
+    width:100%;
+    padding:10px 15px;
+    border:none;
+    background:none;
+    text-align:left;
+    cursor:pointer;
+}
+
+.dropdown-content button:hover{
+    background:#f2f2f2;
+}
+
+/* SHOW DROPDOWN */
+.dropdown-content.show{
+    display:block;
+}
+/* ===============================
+   ADMIN FORM MAGIC
+================================ */
+
+/* Page background polish */
+body {
+  background: linear-gradient(180deg, #f4f6f9, #eef2f6);
+}
+
+/* Card glow + depth */
+.card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+  animation: fadeUp 0.6s ease;
+}
+
+/* Smooth entrance */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Section title */
+#Ptitle {
+  letter-spacing: 0.5px;
+}
+
+/* Labels */
+.form-label {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Inputs */
+.form-control,
+.form-select {
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  transition: all 0.25s ease;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* Focus magic */
+.form-control:focus,
+.form-select:focus {
+  border-color: #2aa3c6;
+  box-shadow:
+    0 0 0 0.2rem rgba(42,163,198,0.15),
+    inset 0 1px 2px rgba(0,0,0,0.05);
+  transform: scale(1.01);
+}
+
+/* File input hover */
+input[type="file"] {
+  cursor: pointer;
+}
+
+input[type="file"]:hover {
+  background: #f8fbfd;
+}
+
+/* Textarea */
+textarea {
+  resize: none;
+}
+
+/* Submit button */
+#submitBtn {
+  border-radius: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #2aa3c6, #1b7f9e);
+  border: none;
+  box-shadow: 0 10px 25px rgba(42,163,198,0.35);
+  transition: all 0.3s ease;
+}
+
+/* Button hover */
+#submitBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(42,163,198,0.45);
+}
+
+/* Button click */
+#submitBtn:active {
+  transform: scale(0.96);
+}
+
+/* Spacing rhythm */
+.card > div {
+  animation: stagger 0.6s ease both;
+}
+
+.card > div:nth-child(1) { animation-delay: .05s }
+.card > div:nth-child(2) { animation-delay: .1s }
+.card > div:nth-child(3) { animation-delay: .15s }
+.card > div:nth-child(4) { animation-delay: .2s }
+.card > div:nth-child(5) { animation-delay: .25s }
+.card > div:nth-child(6) { animation-delay: .3s }
+
+@keyframes stagger {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Navbar harmony */
+.navbar {
+  backdrop-filter: blur(8px);
+}
+
+/* Mobile polish */
+@media (max-width: 768px) {
+  .card {
+    padding: 1.5rem;
+  }
+
+  #submitBtn {
+    width: 100%;
+  }
+}
+/* ===============================
+   PAGE BACKGROUND
+================================ */
+body {
+  background: linear-gradient(180deg, #f4f6f9, #edf1f6);
+}
+
+/* ===============================
+   NAVBAR POLISH
+================================ */
+.navbar {
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+/* ===============================
+   SIDEBAR CARD
+================================ */
+.sidebar,
+#sidebarMenu {
+  background: transparent !important;
+}
+
+.col-lg-3 .card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  animation: slideInLeft 0.6s ease;
+}
+
+/* Sidebar animation */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Sidebar title */
+.col-lg-3 h5 {
+  letter-spacing: 0.5px;
+}
+
+/* Category items */
+#dynamic-sidebar .list-group-item {
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 6px;
+  padding: 10px 14px;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+/* Hover */
+#dynamic-sidebar .list-group-item:hover {
+  background: #eef7fb;
+  color: #2aa3c6;
+  transform: translateX(6px);
+}
+
+/* Active category (if added via JS later) */
+#dynamic-sidebar .list-group-item.active {
+  background: linear-gradient(135deg, #2aa3c6, #1b7f9e);
+  color: #fff;
+}
+
+/* ===============================
+   MAIN CONTENT CARD
+================================ */
+.col-lg-9 .card {
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.08);
+  animation: fadeUp 0.6s ease;
+}
+
+/* Entrance animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Headings */
+.col-lg-9 h4 {
+  letter-spacing: 0.3px;
+}
+
+/* ===============================
+   INPUT GROUP MAGIC
+================================ */
+#newCategoryInput {
+  border-radius: 14px 0 0 14px;
+  border: 1px solid #ddd;
+  transition: all 0.25s ease;
+}
+
+#newCategoryInput:focus {
+  border-color: #2aa3c6;
+  box-shadow: 0 0 0 0.2rem rgba(42,163,198,0.15);
+}
+
+/* Add button */
+#addCategoryBtn {
+  border-radius: 0 14px 14px 0;
+  font-weight: 600;
+  background: linear-gradient(135deg, #2aa3c6, #1b7f9e);
+  border: none;
+  box-shadow: 0 8px 22px rgba(42,163,198,0.35);
+  transition: all 0.3s ease;
+}
+
+/* Hover */
+#addCategoryBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(42,163,198,0.45);
+}
+
+/* Click */
+#addCategoryBtn:active {
+  transform: scale(0.96);
+}
+
+/* ===============================
+   PRODUCTS CONTAINER (OPTIONAL)
+================================ */
+#products-container {
+  margin-top: 30px;
+}
+
+/* ===============================
+   MOBILE POLISH
+================================ */
+@media (max-width: 768px) {
+  .col-lg-3 .card {
+    margin-bottom: 20px;
+  }
+
+  #addCategoryBtn {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+/* ===============================
+   PRODUCT CARD
+================================ */
+
+.product-card {
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-product-card {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  border: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.15);
+}
+
+/* IMAGE */
+.image-wrapper {
+  height: 160px;
+  background: linear-gradient(135deg, #f5f7fa, #e4ebf2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-wrapper img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+
+.admin-product-card:hover .image-wrapper img {
+  transform: scale(1.1);
+}
+
+/* TEXT */
+.product-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.product-subtitle {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin-bottom: 6px;
+}
+
+.product-price {
+  font-weight: 700;
+  color: #2aa3c6;
+  margin-bottom: 12px;
+}
+
+/* BUTTONS */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.action-buttons .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Edit Button */
+.btn-edit {
+  background: #2aa3c6;
+  color: #fff;
+}
+
+.btn-edit:hover {
+  background: #1e91b5;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 15px rgba(42,163,198,0.4);
+}
+
+/* Remove Button */
+.btn-remove {
+  background: #dc3545;
+  color: #fff;
+}
+
+.btn-remove:hover {
+  background: #b52a3a;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 15px rgba(220,53,69,0.4);
+}
+
+/* Button Icons */
+.action-buttons svg {
+  height: 1em;
+  width: auto;
+  fill: currentColor;
+  transition: transform 0.25s ease;
+}
+
+.action-buttons .btn:hover svg {
+  transform: scale(1.1) rotate(10deg);
+}

@@ -9,107 +9,155 @@
   <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui/dist/css/coreui.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui/dist/js/coreui.bundle.min.js"></script>
   <link rel="stylesheet" href="CategoriesManagment.css">
+  <link rel="stylesheet" href="../Home.css">
+  <link rel="stylesheet" href="Dashboard.css">
 </head>
 
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
-    <div class="container">
-      <!-- Brand Section -->
-      <a class="navbar-brand d-flex align-items-center" href="ProductsManagement.html">
-        <img src="Images/admin.png" alt="Logo" width="50" height="50" class="me-2">
-        <div class="lh-1">
-          <strong>Admin Dashboard</strong><br>
-          <small class="text-muted">E-Commerce Management</small>
+<!-- NAVBAR (unchanged logic) -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4 sticky-top">
+  <div class="container">
+
+    <!-- Logo / Brand -->
+    <a class="navbar-brand fw-bold d-flex align-items-center" href="Dashboard.html">
+      RAFMAN <span class="text-muted ms-1">(Admin)</span>
+    </a>
+
+    <!-- Toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+
+      <!-- CENTER MENU -->
+      <ul class="navbar-nav mx-auto align-items-center">
+
+        <li class="nav-item ms-4">
+          <a href="Dashboard.html" class="nav-link fw-semibold">
+            Orders
+          </a>
+        </li>
+
+        <li class="nav-item ms-4">
+          <a href="ProductsManagement.html" class="nav-link fw-semibold">
+            Products
+          </a>
+        </li>
+
+        <li class="nav-item ms-4">
+          <a href="CategoriesManagment.html" class="nav-link fw-semibold">
+            Categories
+          </a>
+        </li>
+
+      </ul>
+
+      <!-- RIGHT SIDE -->
+      <div class="d-flex align-items-center gap-3">
+
+        <!-- Add Product -->
+        <div class="icon-btn" onclick="window.location.href='product-add.html'">
+          <svg viewBox="0 0 448 512">
+            <path d="M256 80c0-17.7-14.3-32-32-32s-32 
+            14.3-32 32V224H48c-17.7 0-32 
+            14.3-32 32s14.3 32 32 32H192V432c0 
+            17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 
+            0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
+          </svg>
         </div>
-      </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <!-- User Dropdown -->
+        <div class="dropdown-user">
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
-          <li class="nav-item ms-lg-3">
-            <a class="nav-link active d-flex align-items-center" href="Dashboard.html">
-              <img src="Images/orders.png" alt="Logo" width="20" height="20" class="me-2">
-              <strong>Orders</strong>
-            </a>
-          </li>
-          <li class="nav-item ms-lg-3">
-            <a class="nav-link active d-flex align-items-center" href="ProductsManagement.html">
-              <img src="Images/products.png" alt="Logo" width="20" height="20" class="me-2">
-              <strong>Products Management</strong>
-            </a>
-          </li>
-          <li class="nav-item ms-lg-3">
-            <a class="nav-link active d-flex align-items-center" href="CategoriesManagment.html">
-              <img src="Images/categories.png" alt="Logo" width="20" height="20" class="me-2">
-              <strong>Categories Management</strong>
-            </a>
-          </li>
-
-        </ul>
-
-        <a class="nav-link active d-flex align-items-center me-3" href="product-add.html" id="addProduct">
-          <img src="Images/add.png" alt="Logo" width="40" height="40" class="me-2">
-        </a>
-
-      <button type="button" id="logoutButton" class="btn btn-outline-danger shadow-sm" 
-        style="border-radius: 6px; padding: 8px 20px; font-size: 0.95rem; font-weight: 500; transition: all 0.2s ease;">
-  Sign Out
-</button>
-        </style>
-
-      </div>
-    </div>
-  </nav>
-
-
-
-  <div class="container-fluid">
-    <div class="row">
-
-      <!-- Sidebar (Left) -->
-      <div class="col-lg-3 col-md-4">
-        <nav id="sidebarMenu" class="bg-body-tertiary sidebar position-sticky"
-          style="height: calc(100vh - 56px); top: 56px;">
-          <div class="list-group list-group-flush mx-3 mt-3">
-            <span class="nav-section-title text-center fw-bold bg-gray">
-              <h3>Categories</h3>
-            </span>
-            <hr>
-            <div id="dynamic-sidebar" class="list-group list-group-flush mt-4">
-              <!-- Categories will load here -->
-            </div>
-          </div>
-        </nav>
-      </div>
-
-      <!-- Main Content (Right) -->
-      <div class="col-lg-9 col-md-8">
-        <div class="my-3">
-          <h4>Add New Category</h4>
-          <div class="input-group mb-3">
-            <input type="text" id="newCategoryInput" class="form-control" placeholder="Enter category name">
-            <button class="btn btn-primary" id="addCategoryBtn">Add Category</button>
+          <div class="icon-btn user-btn" id="userBtn">
+            <svg viewBox="0 0 640 640">
+              <path d="M320 312C386.3 312 440 258.3 440 
+              192C440 125.7 386.3 72 320 72C253.7 
+              72 200 125.7 200 192C200 258.3 253.7 
+              312 320 312zM290.3 368C191.8 368 112 
+              447.8 112 546.3C112 562.7 125.3 576 
+              141.7 576L498.3 576C514.7 576 528 
+              562.7 528 546.3C528 447.8 448.2 
+              368 349.7 368H290.3z"/>
+            </svg>
           </div>
 
-          <!-- Optional: Render products here -->
-          <div id="products-container"></div>
-        </div>
-      </div>
+          <div class="dropdown-content right" id="userMenu">
+            <button id="logoutButton">Sign Out</button>
+          </div>
 
+        </div>
+
+      </div>
     </div>
   </div>
+</nav>
 
-  <script type="module" src="CategoriesManagment.js"></script>
-  <script src="data/products-data.js"></script>
-  <script src="../script.js"></script>
-  <script src="logout.js"></script>
+<!-- MAIN LAYOUT -->
+<div class="container-fluid mt-4">
+  <div class="row g-4">
+
+    <!-- SIDEBAR -->
+    <div class="col-lg-3 col-md-4">
+      <div class="card shadow-sm border-0 rounded-4 sticky-top"
+           style="top:90px;">
+
+        <div class="card-body">
+          <h5 class="fw-bold text-center mb-3">Categories</h5>
+          <hr>
+
+          <!-- IMPORTANT: same ID -->
+          <div id="dynamic-sidebar" class="list-group list-group-flush mt-3">
+            <!-- Categories injected here -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="col-lg-9 col-md-8">
+      <div class="card shadow-sm border-0 rounded-4 p-4">
+
+        <h4 class="fw-bold mb-3">Add New Category</h4>
+        <p class="text-muted mb-4">
+          Create, manage, and organize product categories.
+        </p>
+
+        <div class="input-group input-group-lg mb-4">
+          <!-- SAME ID -->
+          <input
+            type="text"
+            id="newCategoryInput"
+            class="form-control"
+            placeholder="Enter category name">
+
+          <!-- SAME ID -->
+          <button class="btn btn-primary px-4" id="addCategoryBtn">
+            Add
+          </button>
+        </div>
+
+        <!-- Optional products render -->
+        <div id="products-container"></div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SCRIPTS (unchanged) -->
+<script type="module" src="CategoriesManagment.js"></script>
+<script src="data/products-data.js"></script>
+<script src="../script.js"></script>
+<script src="logout.js"></script>
+
 </body>
+
 
 
 </html>

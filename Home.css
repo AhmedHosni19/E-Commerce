@@ -358,3 +358,24 @@ a {
   opacity: 0.4;
   cursor: not-allowed;
 }
+.footer {
+  background-color: #f8f9fa;
+  border-top: 1px solid #e5e5e5;
+}
+
+.footer h5,
+.footer h6 {
+  color: #212529;
+}
+
+.footer-link {
+  color: #6c757d;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 6px;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #000;
+}

@@ -84,7 +84,8 @@ function showAdminLogin() {
 function initializeApp() {
     // Initialize default admin if no admins exist
     const admins = JSON.parse(localStorage.getItem('admins') || '[]');
-    
+
+
     if (admins.length === 0) {
         const defaultAdmin = {
             name: 'Admin',
@@ -335,5 +336,6 @@ function logout() {
 
 
 }
+
 initializeApp()
 

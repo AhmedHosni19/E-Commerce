@@ -3,6 +3,9 @@ const container = document.getElementById("products");
 // load products (from localStorage if exists)
 let productsDataRaw = JSON.parse(localStorage.getItem("products")) || products;
 let productsData = Object.values(productsDataRaw).flat();
+function saveProducts() {
+  localStorage.setItem("products", JSON.stringify(productsData));
+}
 
 // pagination variables
 let currentPage = 1;
@@ -85,6 +88,12 @@ function renderProducts(list) {
   card.querySelector(".btn-remove").onclick =
     () => removeProduct(product.id);
 
+    card.querySelector(".btn-edit").onclick =
+    (e) => {
+      e.preventDefault();
+      
+      window.location.href = `product-add.html?id=${product.id}`;
+    };
   container.appendChild(card);
 });
 
@@ -159,3 +168,4 @@ function renderPagination(totalPages, list) {
 
 // init
 renderProducts(productsData);
+initCategories();

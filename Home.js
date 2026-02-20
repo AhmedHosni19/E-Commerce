@@ -377,3 +377,22 @@ resetFilterBtn.addEventListener("click", () => {
 
   renderProducts(filteredProducts);
 });
+
+function initCategories() {
+  if (!localStorage.getItem(STORAGE_KEY)) {
+    const categoriesFromDB = Object.keys(products);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(categoriesFromDB));
+  }
+
+  if (!localStorage.getItem("products")) {
+    localStorage.setItem("products", JSON.stringify(products));
+  }
+}
+  initCategories();
+
+
+  if (!window.location.hash) {
+    window.location = window.location + '#loaded';
+    window.location.reload();
+  }
+

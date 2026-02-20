@@ -63,7 +63,7 @@ function saveCart() {
 
     localStorage.setItem(cartKey, JSON.stringify(cart));
 
-    alert("Product added to cart!");
+    alert(product.title + " added to cart!");
 }
 
 
@@ -97,9 +97,9 @@ function addToWishlist(product) {
     if (!exists) {
         wishlist.push(product);
         localStorage.setItem(wishlistKey, JSON.stringify(wishlist));
-        alert("Added to wishlist!");
+        alert(`${product.title} added to your wishlist!`);
     } else {
-        alert("Already in wishlist");
+        alert(`${product.title} is already in your wishlist.`);
     }
 }
 

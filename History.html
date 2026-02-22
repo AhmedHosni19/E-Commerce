@@ -105,40 +105,15 @@
 
         <!-- Table Header -->
         <div class="history-header d-none d-md-flex align-items-center ">
-            <div class="col-md-4 text-start">Order ID</div>
-            <div class="col-md-4 text-center">Total Price</div>
+            <div class="col-md-2 text-start">Order ID</div>
+            <div class="col-md-3 text-center">Total Price</div>
             <div class="col-md-4 text-center">Status</div>
         </div>
 
         <!-- Orders Container -->
         <div class="history-body overflow-auto" id="orders-div" style="display:none;">
 
-            <!-- SINGLE ORDER TEMPLATE (JS duplicates this structure) -->
-            <div class="history-item row align-items-center">
-
-                <!-- ORDER ID (LEFT) -->
-                <div class="col-md-4">
-                    <small class="fw-bold" id="orderId"></small>
-                </div>
-
-                <!-- TOTAL PRICE (CENTER) -->
-                <div class="col-md-4 d-flex justify-content-center">
-                    <small class="fw-semibold text-primary" id="totalPrice"></small>
-                </div>
-
-                <!-- STATUS (CENTER) -->
-                <div class="col-md-4 d-flex justify-content-center">
-                    <small id="status"></small>
-                </div>
-
-                <!-- ACTION (RIGHT) -->
-                <div class="col-md-2 d-flex justify-content-end gap-2" id="action">
-                    <button type="button" class="btn btn-sm btn-primary">Confirm</button>
-                    <button type="button" class="btn btn-sm btn-outline-danger">Reject</button>
-                </div>
-
-            </div>
-
+            
         </div>
 
         <!-- Empty State -->

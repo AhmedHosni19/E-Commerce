@@ -65,3 +65,16 @@
     background-color: #c79f1c;
     color: #ffffff;
 }
+.order-details {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.order-details img {
+  background: #fff;
+}
+
+.toggle-details {
+  white-space: nowrap;
+}

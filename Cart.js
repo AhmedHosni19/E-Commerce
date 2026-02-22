@@ -151,12 +151,7 @@ function addToDashboardCart(products) {
   saveDashboardCart();
   alert(`${products.title} added to dashboard cart`);
 }
-const orderItems = cart.map(item => ({
-  productId: item.id,
-  title: item.title,
-  price: item.price,
-  qty: item.qty
-}));
+
 function orderSummery() {
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   if (!currentUser) {
@@ -172,6 +167,7 @@ function orderSummery() {
 
   const orderItems = cart.map(item => ({
     productId: item.id,
+    productImage: item.image,
     title: item.title,
     price: item.price,
     qty: item.qty
@@ -181,7 +177,7 @@ function orderSummery() {
     orderId,
     email: currentUser.email,
     userId: currentUser.id,
-    items: orderItems,   // ✅ all products
+    items: orderItems,   
     totalPrice,
     status: "Pending",
     date: new Date().toLocaleString(),

@@ -2,17 +2,39 @@ const SHIPPING_RATE = 10;
 const TAX_RATE = 0.08;
 let discount = 0;
 function stockUpdate(orderItems) {
-  let products = JSON.parse(localStorage.getItem("products")) || {};
-  
-  orderItems.forEach(orderItem => {
-    for (let category in products) {
-      const product = products[category].find(p => p.id === orderItem.productId);
+  let products = JSON.parse(localStorage.getItem("products"));
+
+  if (!products) return;
+
+  // CASE 1: products is an ARRAY (old / broken data)
+  if (Array.isArray(products)) {
+    orderItems.forEach(orderItem => {
+      const product = products.find(p => p.id === orderItem.productId);
       if (product) {
         product.stock = orderItem.stock;
       }
+    });
+
+    localStorage.setItem("products", JSON.stringify(products));
+    return;
+  }
+
+  // CASE 2: products is an OBJECT with categories (correct)
+  orderItems.forEach(orderItem => {
+    for (const category in products) {
+      if (!Array.isArray(products[category])) continue;
+
+      const product = products[category].find(
+        p => p.id === orderItem.productId
+      );
+
+      if (product) {
+        product.stock = orderItem.stock;
+        break;
+      }
     }
   });
-  
+
   localStorage.setItem("products", JSON.stringify(products));
 }
 // Helper function to get user-specific cart key

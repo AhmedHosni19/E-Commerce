@@ -1,7 +1,20 @@
 const SHIPPING_RATE = 10;
 const TAX_RATE = 0.08;
 let discount = 0;
-
+function stockUpdate(orderItems) {
+  let products = JSON.parse(localStorage.getItem("products")) || {};
+  
+  orderItems.forEach(orderItem => {
+    for (let category in products) {
+      const product = products[category].find(p => p.id === orderItem.productId);
+      if (product) {
+        product.stock = orderItem.stock;
+      }
+    }
+  });
+  
+  localStorage.setItem("products", JSON.stringify(products));
+}
 // Helper function to get user-specific cart key
 function getCartKey() {
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
@@ -99,11 +112,23 @@ document.addEventListener("DOMContentLoaded", () => {
       row.querySelector("#subTotalPrice").textContent =
         `$${(item.price * item.qty).toFixed(2)}`;
 
-      row.querySelector("#btn-plus").onclick = () => {
-        item.qty++;
-        saveCart();
-        renderCart();
-      };
+     row.querySelector("#btn-plus").onclick = () => {
+  if (item.qty < item.stock) {   // Only allow increment if less than stock
+    item.qty++;
+    saveCart();
+    renderCart();
+  }
+};
+
+// Disable the + button if qty >= stock
+const btnPlus = row.querySelector("#btn-plus");
+if (item.qty >= item.stock) {
+  btnPlus.disabled = true;
+  btnPlus.classList.add("disabled"); // optional for Bootstrap styling
+} else {
+  btnPlus.disabled = false;
+  btnPlus.classList.remove("disabled");
+}
 
       row.querySelector("#btn-minus").onclick = () => {
         if (item.qty > 1) item.qty--;
@@ -170,8 +195,11 @@ function orderSummery() {
     productImage: item.image,
     title: item.title,
     price: item.price,
-    qty: item.qty
+    qty: item.qty,
+    stock:item.stock-item.qty
   }));
+
+stockUpdate(orderItems);
 
   const order = {
     orderId,
@@ -213,7 +241,7 @@ if (submitOrderBtn) {
       alert("Your cart is empty!");
       return;
     }
-     location.reload();
+    //  location.reload();
     const order = orderSummery();
     localStorage.removeItem("cart");
     alert(`Order #${order.orderId} submitted!`);

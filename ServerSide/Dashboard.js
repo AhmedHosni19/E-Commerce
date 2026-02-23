@@ -1,7 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
   const ordersDiv = document.getElementById("orders-div");
   const emptyDiv = document.getElementById("empty-div");
-
+function stockUpdate(orderItems) {
+  let products = JSON.parse(localStorage.getItem("products")) || {};
+  
+  orderItems.forEach(orderItem => {
+    for (let category in products) {
+      const product = products[category].find(p => p.id === orderItem.productId);
+      if (product) {
+        product.stock = orderItem.stock;
+      }
+    }
+  });
+  
+  localStorage.setItem("products", JSON.stringify(products));
+}
   function renderOrders() {
     let orders = JSON.parse(localStorage.getItem("orders")) || [];
 
@@ -89,19 +102,29 @@ document.addEventListener("DOMContentLoaded", () => {
       if (confirmBtn) {
         confirmBtn.onclick = () => {
           orders[index].status = "Confirmed"; 
+        
           localStorage.setItem("orders", JSON.stringify(orders)); 
           renderOrders(); 
         };
       }
 
-      const rejectBtn = row.querySelector(".btn-reject");
-      if (rejectBtn) {
-        rejectBtn.onclick = () => {
-          orders[index].status = "Rejected";
-          localStorage.setItem("orders", JSON.stringify(orders)); 
-          renderOrders();
-        };
-      }
+     const rejectBtn = row.querySelector(".btn-reject");
+if (rejectBtn) {
+  rejectBtn.onclick = () => {
+    orders[index].status = "Rejected";
+
+    // reverse stock
+    const restoreItems = orders[index].items.map(item => ({
+      productId: item.productId,
+      stock: item.stock + item.qty
+    }));
+
+    stockUpdate(restoreItems);
+
+    localStorage.setItem("orders", JSON.stringify(orders));
+    renderOrders();
+  };
+}
 
       ordersDiv.appendChild(row);
     });

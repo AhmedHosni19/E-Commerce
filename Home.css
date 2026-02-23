@@ -379,3 +379,18 @@ a {
 .footer-link:hover {
   color: #000;
 }
+.add-to-cart-btn {
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.add-to-cart-btn.out-of-stock {
+  pointer-events: none; 
+
+  opacity: 0.5;        
+  filter: grayscale(100%); 
+}
+
+.add-to-cart-btn.out-of-stock svg {
+  stroke: #aaa; 
+}

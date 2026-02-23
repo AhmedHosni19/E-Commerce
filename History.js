@@ -71,7 +71,7 @@ item.innerHTML = `
   <!-- EMPTY COLUMN (to match header spacing) -->
   <div class="col-md-3">
   <button class="btn btn-sm btn-outline-secondary toggle-details offset-md-5">
-    Show Details
+    Order Details
   </button>
   </div>
 
@@ -89,8 +89,7 @@ item.innerHTML = `
             src="${p.productImage || './images/placeholder.png'}"
             onerror="this.src='./images/placeholder.png'"
             alt="${p.title}"
-            style="width:60px;height:60px;object-fit:cover;border-radius:8px;"
-          >
+            style="width:60px;height:60px;object-fit:cover;border-radius:8px;">
 
           <div class="flex-grow-1 ms-3">
             <div class="fw-semibold">${p.title}</div>

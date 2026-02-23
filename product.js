@@ -116,15 +116,21 @@ if (!product) {
 
             <div class="d-flex flex-column gap-3">
                 <div class="d-flex gap-2">
-                   <button class="add-cart-btn btn btn-dark btn-lg px-5 py-3 rounded-3 fw-bold" onclick="addToCart(${product.id})">
-                        Add to Cart
+                    <button class="add-cart-btn btn btn-dark btn-lg px-5 py-3 rounded-3 fw-bold"
+                        onclick="addToCart(${product.id})"
+                        ${product.stock <= 0 ? "disabled class='out-of-stock'" : ""}>
+                        ${product.stock <= 0 ? "Out of Stock" : "Add to Cart"}
                     </button>
                     <button class="btn btn-outline-dark px-4" onclick="addToWishlist(${product.id})">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                         </svg>
                     </button>
+
                 </div>
+                 <span class="text-muted small ms-3">
+                  ${product.stock > 0 ? `In Stock: ${product.stock}` : "Out of Stock"}
+                 </span>
                 
                 <div class="mt-4 pt-4 border-top">
                     <div class="d-flex align-items-center gap-3 text-muted mb-2">

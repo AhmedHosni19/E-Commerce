@@ -263,7 +263,7 @@ if (submitOrderBtn) {
       alert("Your cart is empty!");
       return;
     }
-    //  location.reload();
+    location.reload();
     const order = orderSummery();
     localStorage.removeItem("cart");
     alert(`Order #${order.orderId} submitted!`);

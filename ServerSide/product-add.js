@@ -4,101 +4,110 @@ const subTitleInput = document.getElementById("subTitle");
 const categoryInput = document.getElementById("category-select");
 const priceInput = document.getElementById("price");
 const descriptionInput = document.getElementById("description");
+const stockInput = document.getElementById("stock");
 const submitBtn = document.getElementById("submitBtn");
-const title=document.getElementById("Ptitle");
-title.textContent="Add New Product";
-let productsDataRaw = JSON.parse(localStorage.getItem("products")) || products;
+const pageTitle = document.getElementById("Ptitle");
 
-let productsData = Object.values(productsDataRaw).flat();
-function saveProducts() {
-  localStorage.setItem("products", JSON.stringify(productsData));
+pageTitle.textContent = "Add New Product";
+
+/* =========================
+   LOAD PRODUCTS (FLAT)
+========================= */
+let productsData = JSON.parse(localStorage.getItem("products")) || products;
+
+/* =========================
+   SAVE PRODUCTS
+========================= */
+function saveProducts(data) {
+  localStorage.setItem("products", JSON.stringify(data));
 }
 
-// Load products from localStorage
-function loadProducts() {
-  const stored = localStorage.getItem("products");
-  return stored ? JSON.parse(stored) : [...productsData];
-}
-
-// Save products to localStorage
-function saveProducts(products) {
-  localStorage.setItem("products", JSON.stringify(products));
-}
-
-// Load existing products
-productsData = loadProducts();
-
-// Check if we are editing
-const params = new URLSearchParams(window.location.search);
-const editingId = Number(params.get("id"));
-let editingProduct = null;
+/* =========================
+   LOAD CATEGORIES
+========================= */
 const categories = JSON.parse(localStorage.getItem("categories_db")) || [];
 categories.forEach(catName => {
-  const option = document.createElement('option');
+  const option = document.createElement("option");
   option.value = catName;
   option.textContent = catName;
   categoryInput.appendChild(option);
 });
+
+/* =========================
+   EDIT MODE
+========================= */
+const params = new URLSearchParams(window.location.search);
+const editingId = Number(params.get("id"));
+let editingProduct = null;
+
 if (editingId) {
   editingProduct = productsData.find(p => p.id === editingId);
 
-  if (editingProduct) {
+  if (!editingProduct) {
+    alert("Product not found!");
+  } else {
+    pageTitle.textContent = "Edit The Product";
+    submitBtn.textContent = "Update Product";
 
     titleInput.value = editingProduct.title;
     subTitleInput.value = editingProduct.subTitle;
     categoryInput.value = editingProduct.category;
     priceInput.value = editingProduct.price;
     descriptionInput.value = editingProduct.description;
+    stockInput.value = editingProduct.stock ?? 0;
 
-
-    // show existing image preview
+    // Image preview
     const imgPreview = document.createElement("img");
     imgPreview.src = editingProduct.image;
     imgPreview.height = 100;
     imageInput.parentElement.appendChild(imgPreview);
-    title.textContent="Edit The Product"
-    submitBtn.textContent = "Update Product";
-  } else {
-    alert("Product not found!");
   }
 }
 
+/* =========================
+   SUBMIT
+========================= */
 submitBtn.addEventListener("click", e => {
   e.preventDefault();
-  const currentAdmin = JSON.parse(sessionStorage.getItem('currentAdmin'));
+
+  const currentAdmin = JSON.parse(sessionStorage.getItem("currentAdmin"));
   if (!currentAdmin) {
     alert("Please log in first!");
     return;
   }
-  if (!editingProduct && !imageInput.files.length) return alert("Please upload a product image!");
-  if (!titleInput.value.trim()) return alert("Please enter product title!");
-  if (!subTitleInput.value.trim()) return alert("Please enter product subtitle!");
-  if (!categoryInput.value.trim()) return alert("Please Seclect product category!");
-  if (!priceInput.value || priceInput.value <= 0) return alert("Please enter a valid price!");
-  if (!descriptionInput.value.trim()) return alert("Please enter product description!");
 
-  const processProduct = (imageData) => {
+  if (!editingProduct && !imageInput.files.length)
+    return alert("Please upload a product image!");
+  if (!titleInput.value.trim())
+    return alert("Please enter product title!");
+  if (!subTitleInput.value.trim())
+    return alert("Please enter product subtitle!");
+  if (!categoryInput.value.trim())
+    return alert("Please select product category!");
+  if (!priceInput.value || priceInput.value <= 0)
+    return alert("Please enter a valid price!");
+  if (!descriptionInput.value.trim())
+    return alert("Please enter product description!");
+  if (stockInput.value === "" || stockInput.value < 0)
+    return alert("Please enter valid stock!");
+
+  const processProduct = imageData => {
     if (editingProduct) {
-      // Update product
+      // UPDATE
       editingProduct.title = titleInput.value.trim();
       editingProduct.subTitle = subTitleInput.value.trim();
       editingProduct.category = categoryInput.value;
       editingProduct.price = parseFloat(priceInput.value);
       editingProduct.description = descriptionInput.value.trim();
+      editingProduct.stock = Number(stockInput.value);
 
-      // Only update image if a new one was uploaded
       if (imageData !== null) {
         editingProduct.image = imageData;
-      } else if (!editingProduct.image) {
-        alert("No image found for this product!");
-        return;
       }
 
-
-      saveProducts(productsData);
-      alert(`${editingProduct.title} updated successfully! `);
+      alert(`${editingProduct.title} updated successfully!`);
     } else {
-      // Create new product
+      // ADD
       const newProduct = {
         id: Date.now(),
         title: titleInput.value.trim(),
@@ -106,17 +115,18 @@ submitBtn.addEventListener("click", e => {
         category: categoryInput.value.trim(),
         price: parseFloat(priceInput.value),
         description: descriptionInput.value.trim(),
-        image: imageData
+        image: imageData,
+        stock: Number(stockInput.value)
       };
+
       productsData.push(newProduct);
-      saveProducts(productsData);
       alert(`${newProduct.title} added successfully!`);
     }
 
+    saveProducts(productsData);
     window.open("ProductsManagement.html", "_self");
   };
 
-  // If a new image was uploaded, read it
   if (imageInput.files.length) {
     const reader = new FileReader();
     reader.onload = () => processProduct(reader.result);
@@ -125,4 +135,3 @@ submitBtn.addEventListener("click", e => {
     processProduct(null);
   }
 });
-

@@ -2,17 +2,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const ordersDiv = document.getElementById("orders-div");
   const emptyDiv = document.getElementById("empty-div");
 function stockUpdate(orderItems) {
-  let products = JSON.parse(localStorage.getItem("products")) || {};
-  
+  let products = JSON.parse(localStorage.getItem("products")) || [];
+
   orderItems.forEach(orderItem => {
-    for (let category in products) {
-      const product = products[category].find(p => p.id === orderItem.productId);
-      if (product) {
-        product.stock = orderItem.stock;
-      }
+    const product = products.find(p => p.id === orderItem.productId);
+    if (product) {
+      product.stock = orderItem.stock;
     }
   });
-  
+
   localStorage.setItem("products", JSON.stringify(products));
 }
   function renderOrders() {

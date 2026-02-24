@@ -1,91 +1,10 @@
-
-// Validation Functions
-function validateEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-
-function validatePassword(password) {
-    return password.length >= 6;
-}
-
-function validateName(name) {
-    return name.length >= 2;
-}
-
-// Password Strength Checker
-function checkPasswordStrength(password) {
-    let strength = 0;
-    
-    if (password.length >= 8) strength++;
-    if (password.length >= 12) strength++;
-    if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
-    if (/\d/.test(password)) strength++;
-    if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) strength++;
-    
-    return strength;
-}
-
-// Error Handling
-function showError(fieldId, message) {
-    const field = document.getElementById(fieldId);
-    const errorElement = document.getElementById(fieldId + 'Error');
-    
-    field.classList.add('input-error');
-    errorElement.textContent = message;
-    errorElement.classList.add('show');
-}
-
-function clearErrors() {
-    const errorMessages = document.querySelectorAll('.error-message');
-    const inputs = document.querySelectorAll('input');
-    
-    errorMessages.forEach(error => {
-        error.classList.remove('show');
-        error.textContent = '';
-    });
-    
-    inputs.forEach(input => {
-        input.classList.remove('input-error');
-    });
-}
-
-// Navigation Functions
-
-function hideAll() {
-    const containers = document.querySelectorAll('.form-container, .dashboard');
-    containers.forEach(container => container.classList.add('hidden'));
-}
-
-function showCustomerLogin() {
-    sessionStorage.removeItem('currentUser');
-sessionStorage.removeItem('currentAdmin');
-
-location.reload();
-    hideAll();
-    clearErrors();
-    document.getElementById('customerLogin').classList.remove('hidden');
-}
-
-function showRegister() {
-    hideAll();
-    clearErrors();
-    document.getElementById('customerRegister').classList.remove('hidden');
-}
-
-function showAdminLogin() {
-    hideAll();
-    clearErrors();
-    document.getElementById('adminLogin').classList.remove('hidden');
-}
-
-// Initialization
+/**
+ * APP INITIALIZATION & UTILITIES
+ */
 
 function initializeApp() {
     // Initialize default admin if no admins exist
     const admins = JSON.parse(localStorage.getItem('admins') || '[]');
-
-
     if (admins.length === 0) {
         const defaultAdmin = {
             name: 'Admin',
@@ -97,13 +16,89 @@ function initializeApp() {
     }
 }
 
-// Password Strength Indicator
+// Clear all error states from the UI
+function clearErrors() {
+    document.querySelectorAll('.error-message').forEach(error => {
+        error.classList.remove('show');
+        error.textContent = '';
+    });
+    document.querySelectorAll('input').forEach(input => {
+        input.classList.remove('input-error');
+    });
+}
 
+// Show specific error for a field
+function showError(fieldId, message) {
+    const field = document.getElementById(fieldId);
+    const errorElement = document.getElementById(fieldId + 'Error');
+    if (field) field.classList.add('input-error');
+    if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.classList.add('show');
+    }
+}
+
+/**
+ * VALIDATION CORE LOGIC
+ */
+
+const validateEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+};
+
+const validateName = (name) => {
+    return name.trim().length >= 2 && /^[a-zA-Z\s]*$/.test(name);
+};
+
+const validatePassword = (password) => {
+    return password.length >= 6;
+};
+
+function checkPasswordStrength(password) {
+    let strength = 0;
+    if (password.length >= 8) strength++;
+    if (password.length >= 12) strength++;
+    if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
+    if (/\d/.test(password)) strength++;
+    if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) strength++;
+    return strength;
+}
+
+/**
+ * NAVIGATION & VISUALS
+ */
+
+function hideAll() {
+    const containers = document.querySelectorAll('.form-container, .dashboard');
+    containers.forEach(container => container.classList.add('hidden'));
+}
+
+function showCustomerLogin() {
+    sessionStorage.clear();
+    hideAll();
+    clearErrors();
+    document.getElementById('customerLogin')?.classList.remove('hidden');
+}
+
+function showRegister() {
+    hideAll();
+    clearErrors();
+    document.getElementById('customerRegister')?.classList.remove('hidden');
+}
+
+function showAdminLogin() {
+    hideAll();
+    clearErrors();
+    document.getElementById('adminLogin')?.classList.remove('hidden');
+}
+
+// Password Strength UI Feedback
 document.getElementById('registerPassword')?.addEventListener('input', function(e) {
     const password = e.target.value;
     const strengthEl = document.getElementById('passwordStrength');
-    const strength = checkPasswordStrength(password);
+    if (!strengthEl) return;
 
+    const strength = checkPasswordStrength(password);
     if (password.length === 0) {
         strengthEl.textContent = '';
         return;
@@ -121,8 +116,11 @@ document.getElementById('registerPassword')?.addEventListener('input', function(
     }
 });
 
-// Customer Login
+/**
+ * FORM SUBMISSION HANDLERS
+ */
 
+// 1. Customer Login
 document.getElementById('customerLoginForm')?.addEventListener('submit', function(e) {
     e.preventDefault();
     clearErrors();
@@ -132,6 +130,14 @@ document.getElementById('customerLoginForm')?.addEventListener('submit', functio
 
     let hasError = false;
 
+    if (!validateEmail(email)) {
+        showError('customerLoginEmail', 'Please enter a valid email');
+        hasError = true;
+    }
+    if (!password) {
+        showError('customerLoginPassword', 'Password cannot be empty');
+        hasError = true;
+    }
 
     if (hasError) return;
 
@@ -146,8 +152,7 @@ document.getElementById('customerLoginForm')?.addEventListener('submit', functio
     }
 });
 
-// Customer Registration
-
+// 2. Customer Registration
 document.getElementById('customerRegisterForm')?.addEventListener('submit', function(e) {
     e.preventDefault();
     clearErrors();
@@ -160,20 +165,17 @@ document.getElementById('customerRegisterForm')?.addEventListener('submit', func
     let hasError = false;
 
     if (!validateName(name)) {
-        showError('registerName', 'Name must be at least 2 characters long');
+        showError('registerName', 'Name must be at least 2 characters (letters only)');
         hasError = true;
     }
-
     if (!validateEmail(email)) {
-        showError('registerEmail', 'Please enter a valid email address');
+        showError('registerEmail', 'Valid email required');
         hasError = true;
     }
-
     if (!validatePassword(password)) {
-        showError('registerPassword', 'Password must be at least 6 characters long');
+        showError('registerPassword', 'Password must be at least 6 characters');
         hasError = true;
     }
-
     if (password !== confirmPassword) {
         showError('registerConfirmPassword', 'Passwords do not match');
         hasError = true;
@@ -182,22 +184,19 @@ document.getElementById('customerRegisterForm')?.addEventListener('submit', func
     if (hasError) return;
 
     const users = JSON.parse(localStorage.getItem('users') || '[]');
-    
     if (users.some(u => u.email === email)) {
-        showError('registerEmail', 'An account with this email already exists');
+        showError('registerEmail', 'Account already exists with this email');
         return;
     }
 
     const newUser = { name, email, password };
     users.push(newUser);
     localStorage.setItem('users', JSON.stringify(users));
-
     sessionStorage.setItem('currentUser', JSON.stringify(newUser));
     window.location.href = 'Home.html';
 });
 
-// Admin Login
-
+// 3. Admin Login
 document.getElementById('adminLoginForm')?.addEventListener('submit', function(e) {
     e.preventDefault();
     clearErrors();
@@ -205,19 +204,10 @@ document.getElementById('adminLoginForm')?.addEventListener('submit', function(e
     const email = document.getElementById('adminLoginEmail').value.trim();
     const password = document.getElementById('adminLoginPassword').value;
 
-    let hasError = false;
-
-    if (!validateEmail(email)) {
-        showError('adminLoginEmail', 'Please enter a valid email address');
-        hasError = true;
+    if (!validateEmail(email) || !password) {
+        showError('adminLoginEmail', 'Credentials required');
+        return;
     }
-
-    if (!validatePassword(password)) {
-        showError('adminLoginPassword', 'Password must be at least 6 characters');
-        hasError = true;
-    }
-
-    if (hasError) return;
 
     const admins = JSON.parse(localStorage.getItem('admins') || '[]');
     const admin = admins.find(a => a.email === email && a.password === password);
@@ -230,8 +220,7 @@ document.getElementById('adminLoginForm')?.addEventListener('submit', function(e
     }
 });
 
-// Add New Admin
-
+// 4. Add New Admin
 document.getElementById('addAdminForm')?.addEventListener('submit', function(e) {
     e.preventDefault();
     clearErrors();
@@ -243,26 +232,23 @@ document.getElementById('addAdminForm')?.addEventListener('submit', function(e) 
     let hasError = false;
 
     if (!validateName(name)) {
-        showError('newAdminName', 'Name must be at least 2 characters long');
+        showError('newAdminName', 'Min 2 characters required');
         hasError = true;
     }
-
     if (!validateEmail(email)) {
-        showError('newAdminEmail', 'Please enter a valid email address');
+        showError('newAdminEmail', 'Invalid email format');
         hasError = true;
     }
-
     if (!validatePassword(password)) {
-        showError('newAdminPassword', 'Password must be at least 6 characters long');
+        showError('newAdminPassword', 'Min 6 characters required');
         hasError = true;
     }
 
     if (hasError) return;
 
     const admins = JSON.parse(localStorage.getItem('admins') || '[]');
-
     if (admins.some(a => a.email === email)) {
-        showError('newAdminEmail', 'An admin with this email already exists');
+        showError('newAdminEmail', 'Admin email already exists');
         return;
     }
 
@@ -270,72 +256,54 @@ document.getElementById('addAdminForm')?.addEventListener('submit', function(e) 
     admins.push(newAdmin);
     localStorage.setItem('admins', JSON.stringify(admins));
 
-    const successEl = document.getElementById('addAdminSuccess');
-    successEl.textContent = `✅ Admin "${name}" added successfully!`;
-    successEl.classList.remove('hidden');
-
+    alert('Admin added successfully!');
     document.getElementById('addAdminForm').reset();
     displayAdminList();
-
-    setTimeout(() => {
-        successEl.classList.add('hidden');
-    }, 3000);
-    alert('Admin added successfully! You will be redirected to Products Management page.');
     window.location.href = '/ServerSide/ProductsManagement.html';
-
 });
 
-// Dashboard Functions
-
-function showCustomerDashboard(user) {
-    hideAll();
-    document.getElementById('customerDashboard').classList.remove('hidden');
-    document.getElementById('customerDashboardName').textContent = user.name;
-    document.getElementById('customerDashboardEmail').textContent = user.email;
-}
+/**
+ * DASHBOARD & LOGOUT
+ */
 
 function showAdminDashboard(admin) {
     hideAll();
-    document.getElementById('adminDashboard').classList.remove('hidden');
-    document.getElementById('adminDashboardName').textContent = admin.name;
-    document.getElementById('adminDashboardEmail').textContent = admin.email;
-    displayAdminList();
+    const dashboard = document.getElementById('adminDashboard');
+    if (dashboard) {
+        dashboard.classList.remove('hidden');
+        document.getElementById('adminDashboardName').textContent = admin.name;
+        document.getElementById('adminDashboardEmail').textContent = admin.email;
+        displayAdminList();
+    }
 }
 
 function displayAdminList() {
     const admins = JSON.parse(localStorage.getItem('admins') || '[]');
     const listEl = document.getElementById('adminList');
-    
+    if (!listEl) return;
+
     if (admins.length === 0) {
-        listEl.innerHTML = '<p style="text-align: center; color: #666;">No admins found</p>';
+        listEl.innerHTML = '<p>No admins found</p>';
         return;
     }
 
     listEl.innerHTML = admins.map(admin => `
         <div class="admin-item">
-            <div>
-                <strong>${admin.name}</strong><br>
-                <small>${admin.email}</small>
-            </div>
+            <strong>${admin.name}</strong><br>
+            <small>${admin.email}</small>
         </div>
     `).join('');
 }
 
-// Logout
-let signoutButtons = document.querySelectorAll('.signout-button');
-signoutButtons.forEach(button => {
-    button.addEventListener('click', logout);
-    
-});
-
 function logout() {
-    
-    sessionStorage.removeItem('currentUser');
-    sessionStorage.removeItem('currentAdmin');
+    sessionStorage.clear();
     window.location.href = 'index.html';
-
-
 }
 
-initializeApp()
+// Attach logout to all signout buttons
+document.querySelectorAll('.signout-button').forEach(button => {
+    button.addEventListener('click', logout);
+});
 
+// Run on page load
+initializeApp();

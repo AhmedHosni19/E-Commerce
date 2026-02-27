@@ -29,14 +29,15 @@ function addToCart(productOrId) {
     const existingProduct = cart.find(item => item.id === product.id);
 
     if (existingProduct) {
-        existingProduct.qty += 1;
+    alert(product.title + " already on your cart");
     } else {
         // Spread operator ensures all product details are saved
         cart.push({ ...product, qty: 1 });
+        alert(`${product.title} added to cart!`);
+
     }
 
     localStorage.setItem(cartKey, JSON.stringify(cart));
-    alert(`${product.title} added to cart!`);
 }
 
 // Function to add to Wishlist
